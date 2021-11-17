@@ -10,7 +10,7 @@ abstract class Repository
 		if ($this->db == null) {
 			include $_SERVER['DOCUMENT_ROOT'] . '/config/database.php';
 			try {
-				$dsn = "mysql:host=" . $configDatabaseDev['host'] . ";port=" . $configDatabaseDev['port'] . ";dbname=" . $configDatabaseDev['dbname'] . ";charset=" . $configDatabase['charset'];
+				$dsn = "mysql:host=" . $configDatabaseDev['host'] . ";port=" . $configDatabaseDev['port'] . ";dbname=" . $configDatabaseDev['dbname'] . ";charset=" . $configDatabaseDev['charset'];
 				$db = new PDO($dsn, $configDatabaseDev['user'], $configDatabaseDev['pwd']);
 				$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
 				// Activation des erreurs PDO
