@@ -29,8 +29,6 @@ class DemandeRemboursementRepository extends Repository
     {
         $db = $this->dbConnect();
         try {
-            session_start();
-            $id = $_SESSION['id'];
             // on prépare la requête select
             $req = $db->prepare("update demande_remboursement 
             set  montant = :par_montant,
