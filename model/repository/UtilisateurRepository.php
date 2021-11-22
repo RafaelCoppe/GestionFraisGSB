@@ -17,9 +17,9 @@ class UtilisateurRepository extends Repository
         if (trim($motDePasse) == "") {
             $msg = $msg . "Le mot de passe est obligatoire </br>";
         }
+        $unUtilisateur= null;
         if ($msg == "") {
             try {
-
                 // on prépare la requête select
                 $req = $db->prepare("SELECT id,nom, prenom,pseudo,mot_de_passe,id_profil 
                 FROM utilisateur 
@@ -30,24 +30,25 @@ class UtilisateurRepository extends Repository
                 $req->execute();
                 // on récupere la valeur retournée par la requête 
                 $enreg = $req->fetch();
-                $unUtilisateur = new Utilisateur(
-                    $enreg->id,
-                    $enreg->nom,
-                    $enreg->prenom,
-                    $enreg->pseudo,
-                    $enreg->mot_de_passe,
-                    new Profil($enreg->id_profil, null),
-                    null
-                );
+                if ($enreg != false) {
+                    $unUtilisateur = new Utilisateur(
+                        $enreg->id,
+                        $enreg->nom,
+                        $enreg->prenom,
+                        $enreg->pseudo,
+                        $enreg->mot_de_passe,
+                        new Profil($enreg->id_profil, null),
+                        null
+                    );
+                }
             } catch (PDOException $e) {
                 die("BDselConnex: erreur vérification connexion 
                                 <br>Erreur :" . $e->getMessage());
             }
-            return $unUtilisateur;
-        } else {
-            return null;
-        }
+        } 
+        return $unUtilisateur;
     }
+
     public function fonctUtilisateur($profil)
     {
         $lesFoncts = array();
