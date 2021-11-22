@@ -58,7 +58,8 @@ class DemandeRemboursementRepository extends Repository
                         DATE_FORMAT(date_saisie, '%d/%m/%Y à %H:%i:%s') as date_saisie, 
                         type_frais.libelle,montant, commentaire
                         from demande_remboursement 
-                join type_frais on type_frais.id = id_type_frais");
+                join type_frais on type_frais.id = id_type_frais
+                where id_delegue = '" . $idDelegue . "'");
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
