@@ -10,9 +10,9 @@ if (count($lesDemandes) == 0) {
         <thead class="table-light">
             <tr>
                 <th class="col">date de saisie</th>
-                <th scope="col">type de frais</th>
-                <th scope="col">montant</th>
                 <th scope="col">commentaire</th>
+                <th scope="col">montant</th>
+                <th scope="col">type de frais</th>
             </tr>
         </thead>
         <?php foreach ($lesDemandes as $uneDemande) {
