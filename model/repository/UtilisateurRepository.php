@@ -47,8 +47,8 @@ class UtilisateurRepository extends Repository
             }
         } 
         return $unUtilisateur;
-        }
     }
+
     public function fonctUtilisateur($profil)
     {
         $lesFoncts = array();
