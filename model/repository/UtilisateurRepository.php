@@ -17,9 +17,9 @@ class UtilisateurRepository extends Repository
         if (trim($motDePasse) == "") {
             $msg = $msg . "Le mot de passe est obligatoire </br>";
         }
+        $unUtilisateur= null;
         if ($msg == "") {
             try {
-                $unUtilisateur= null;
                 // on prépare la requête select
                 $req = $db->prepare("SELECT id,nom, prenom,pseudo,mot_de_passe,id_profil 
                 FROM utilisateur 
@@ -29,8 +29,8 @@ class UtilisateurRepository extends Repository
                 // on demande l'exécution de la requête 
                 $req->execute();
                 // on récupere la valeur retournée par la requête 
-                $lesEnregs = $req->fetchAll();
-                foreach ($lesEnregs as $enreg){
+                $enreg = $req->fetch();
+                if ($enreg != false) {
                     $unUtilisateur = new Utilisateur(
                         $enreg->id,
                         $enreg->nom,
@@ -45,9 +45,8 @@ class UtilisateurRepository extends Repository
                 die("BDselConnex: erreur vérification connexion 
                                 <br>Erreur :" . $e->getMessage());
             }
-            return $unUtilisateur;
-        } else {
-            return null;
+        } 
+        return $unUtilisateur;
         }
     }
     public function fonctUtilisateur($profil)
