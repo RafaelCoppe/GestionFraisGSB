@@ -2,7 +2,7 @@
 <h2 class="text-center">Vos demandes de remboursement</h2>
 
 <?php
-if (count($lesDemandes) != 0) {
+if (count($lesDemandes) == 0) {
     echo ("Vous n'avez saisi aucune demande");
 } else {
 ?>
