@@ -20,11 +20,12 @@ class UtilisateurController extends Controller
                 // enregistrement existe (l'identifiant et le mot de passe sont valides)
                 // on enregistre dans une variable de session le nom et le prénom de l'employé
                 session_start();
+                $utilisateur = $unUtilisateur->getNom()." ".$unUtilisateur->getPrenom();
                 $_SESSION['profil'] = $unUtilisateur->getProfil()->getId();
                 $_SESSION['id'] = $unUtilisateur->getId();
                 $lesFonctionnalites = $utilRepository->fonctUtilisateur($unUtilisateur->getProfil()->getId());
                 $this->creerOptionsMenus($unUtilisateur->getProfil()->getId(), $lesFonctionnalites);
-                $this->render("accueil/accueil", array("title" => "Accueil"));
+                $this->render("accueil/accueil", array("title" => "Accueil", "nomPrenom" => $utilisateur));
             } else {
                 $msgErr = "identifiant et/ou mot de passe incorrect";
                 $this->render("utilisateur/connexion", array("title" => "Connexion", "msgErr" => $msgErr));
