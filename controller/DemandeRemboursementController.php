@@ -25,10 +25,10 @@ class DemandeRemboursementController extends Controller
         $laDemande = new DemandeRemboursement(
             null,
             date('Y-m-d H:i:s'),
-            0,
+            $_POST['montant'],
             $_POST['commentaire'],
-            new TypeFrais($idUtilConnecte, null),
-            new Utilisateur($_POST['typeFrais'])
+            new TypeFrais($_POST['typeFrais'], null),
+            new Utilisateur($idUtilConnecte)
         );
         $uneDemandeRepository = new DemandeRemboursementRepository();
         $ret = $uneDemandeRepository->ajoutDemandeRemboursement($laDemande);
@@ -101,8 +101,11 @@ class DemandeRemboursementController extends Controller
     }
     public function consultMesDemandeRemboursement()
     {
+        session_start();
+        $idUtilConnecte = $_SESSION['profil'];
+        
         $unDemRemboursRepository = new DemandeRemboursementRepository();
-        $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement();
+        $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
 
         $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDemandes" => $lesDemandes));
     }
