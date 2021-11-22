@@ -25,7 +25,7 @@ class DemandeRemboursementController extends Controller
         $laDemande = new DemandeRemboursement(
             null,
             date('Y-m-d H:i:s'),
-            $_POST['montant']
+            $_POST['montant'],
             $_POST['commentaire'],
             new TypeFrais($_POST['typeFrais'], null),
             new Utilisateur($idUtilConnecte)
