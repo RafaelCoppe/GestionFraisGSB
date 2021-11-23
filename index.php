@@ -87,8 +87,8 @@ if (isset($_GET['action'])) {
             }
             // demande du formulaire d'ajout d'un deplacement en pharmacie
             require(ROOT . "/controller/Controller.php");
-            require(ROOT . "/controller/DeplacementPharmacieController.php");
-            $leControleur = new DeplacementPharmacieController();
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
             $leControleur->ajoutDeplacementPharmacieForm();
             break;
         case "connexionTrait":
