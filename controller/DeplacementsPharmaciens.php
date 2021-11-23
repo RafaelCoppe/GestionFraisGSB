@@ -41,7 +41,7 @@ class DeplacementsPharmaciens extends Controller
         $this->render("demandeRemboursement/ajoutDemande", array("title" => "Ajout d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais, "msg" => $msg));
     }
 
-    public function consultDeplacementPharmacie()
+    /*public function consultDeplacementPharmacie()
     {
         session_start();
         $idUtilConnecte = $_SESSION['profil'];
@@ -50,5 +50,5 @@ class DeplacementsPharmaciens extends Controller
         $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
 
         $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDemandes" => $lesDemandes));
-    }
+    }*/
 };

@@ -2,7 +2,7 @@
 class DeplacementPharmacie
 {
 	private int $id;
-	private date $date;
+	private string $date;
     private string $pharmacie_nom;
     private string $pharmacie_adresse;
     private string $commentaire;
