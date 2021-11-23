@@ -1,12 +1,12 @@
 <?php
 class DeplacementPharmacie
 {
-	private int $id;
-	private string $date;
+	private ?int $id;
+	private ?string $date;
     private string $pharmacie_nom;
     private string $pharmacie_adresse;
     private string $commentaire;
-    private int $id_delegue;
+    private ?int $id_delegue;
 
 	public function __construct($id, $date, $pharmacie_nom, $pharmacie_adresse, $commentaire, $id_delegue)
 	{

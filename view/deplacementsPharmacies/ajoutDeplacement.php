@@ -1,4 +1,4 @@
-<h1 class="text-center">Ajout d'une demande de remboursement</h1>
+<h1 class="text-center">Ajout d'un deplacement en pharmacie</h1>
 <form action="index.php?action=ajoutDemRembTrait" method='post'>
     <div class="row mb-3">
         <label for="montant" class="col-lg-4 col-form-label">Montant du remboursement</label>
