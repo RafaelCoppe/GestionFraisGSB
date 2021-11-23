@@ -73,6 +73,24 @@ if (isset($_GET['action'])) {
             $leControleur = new DemandeRemboursementController();
             $leControleur->consultMesDemandeRemboursement();
             break;
+        case "ajoutDepPharmaForm":
+            session_start();
+            //if (session_status() == 3) {
+            $idDelegue = $_SESSION['id'];
+            //}
+            if (isset($idDelegue) == false || $idDelegue == 0) {
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/UtilisateurController.php");
+                $leControleur = new UtilisateurController();
+                $leControleur->connexionForm();
+                break;
+            }
+            // demande du formulaire d'ajout d'un deplacement en pharmacie
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementPharmacieController.php");
+            $leControleur = new DeplacementPharmacieController();
+            $leControleur->ajoutDeplacementPharmacieForm();
+            break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
             // Vérification des informations saisies
