@@ -1,5 +1,5 @@
 <?php
-class DemandeRemboursement
+class DeplacementPharmacie
 {
 	private int $id;
 	private date $date;
