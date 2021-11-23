@@ -26,7 +26,7 @@ class DeplacementsPharmaciens extends Controller
             new Utilisateur($idUtilConnecte)
         );
         $unDeplacementRepository = new DeplacementPharmacieRepository();
-        $ret = $uneDemandeRepository->ajoutDemandeRemboursement($laDemande);
+        $ret = $unDeplacementRepository->ajoutDeplacementPharmacie($leDeplacement);
 
         //
         if ($ret == false) {
@@ -36,9 +36,7 @@ class DeplacementsPharmaciens extends Controller
             $msg = "<p class='text-success'>Votre demande a été enregistrée</p>";
         }
         //
-        $typeFraisRepository = new TypeFraisRepository();
-        $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
-        $this->render("demandeRemboursement/ajoutDemande", array("title" => "Ajout d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais, "msg" => $msg));
+        $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un deplacement en pharmacie", "msg" => $msg));
     }
 
     /*public function consultDeplacementPharmacie()
