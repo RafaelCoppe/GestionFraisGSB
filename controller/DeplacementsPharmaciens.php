@@ -9,23 +9,23 @@ class DeplacementsPharmaciens extends Controller
         require_once(ROOT . '/model/entity/DeplacementPharmacie.php');
         require_once(ROOT . '/model/entity/Produits.php');
     }
-    public function ajoutDemandeRemboursementForm()
+    public function ajoutDeplacementPharmacieForm()
     {
         $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un déplacement en pharmacie"));
     }
-    public function ajoutDemandeRemboursementTrait()
+    public function ajoutDeplacementPharmacieTrait()
     {
         session_start();
         $idUtilConnecte = $_SESSION['id'];
         $leDeplacement = new DeplacementPharmacie(
             null,
             date('Y-m-d H:i:s'),
-            $_POST['montant'],
+            $_POST['pharmacie_nom'],
+            $_POST['pharmacie_adresse'],
             $_POST['commentaire'],
-            new TypeFrais($_POST['typeFrais'], null),
             new Utilisateur($idUtilConnecte)
         );
-        $uneDemandeRepository = new DemandeRemboursementRepository();
+        $unDeplacementRepository = new DeplacementPharmacieRepository();
         $ret = $uneDemandeRepository->ajoutDemandeRemboursement($laDemande);
 
         //
@@ -41,7 +41,7 @@ class DeplacementsPharmaciens extends Controller
         $this->render("demandeRemboursement/ajoutDemande", array("title" => "Ajout d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais, "msg" => $msg));
     }
 
-    public function consultMesDemandeRemboursement()
+    public function consultDeplacementPharmacie()
     {
         session_start();
         $idUtilConnecte = $_SESSION['profil'];
