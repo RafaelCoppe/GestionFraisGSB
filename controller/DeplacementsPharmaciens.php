@@ -17,7 +17,7 @@ class DeplacementsPharmaciens extends Controller
     {
         session_start();
         $idUtilConnecte = $_SESSION['id'];
-        $laDemande = new DemandeRemboursement(
+        $leDeplacement = new DeplacementPharmacie(
             null,
             date('Y-m-d H:i:s'),
             $_POST['montant'],
