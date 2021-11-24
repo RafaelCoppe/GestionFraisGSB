@@ -9,15 +9,14 @@ class DeplacementPharmacieRepository extends Repository
         $db = $this->dbConnect();
         try {
             // on prépare la requête select
-            $req = $db->prepare("insert into deplacements_pharmacie 
-            values (0,:par_date_saisie,:par_pharma_nom,:par_pharma_adresse,:par_commentaire,:par_id_delegue)");
+            $req = $db->prepare("insert into deplacement_pharmacie 
+            values (0,:par_date_saisie,:par_pharma_id,:par_commentaire,:par_id_delegue)");
             // on affecte une valeur au paramètre déclaré dans la requête 
             // récupération de la date du jour 
-            $req->bindValue(':par_date_saisie', $deplacement->getDateSaisie(), PDO::PARAM_STR);
-            $req->bindValue(':par_pharma_nom', $deplacement->getNomPharmacie(), PDO::PARAM_STR);
-            $req->bindValue(':par_pharma_adresse', $deplacement->getAdressePharmacie(), PDO::PARAM_STR);
+            $req->bindValue(':par_date_saisie', $deplacement->getDate(), PDO::PARAM_STR);
+            $req->bindValue(':par_pharma_nom', $deplacement->getLaPharmacie()->GetId(), PDO::PARAM_INT);
             $req->bindValue(':par_commentaire', $deplacement->getCommentaire(), PDO::PARAM_STR);
-            $req->bindValue(':par_id_delegue', $deplacement->getIdDelegue(), PDO::PARAM_INT);
+            $req->bindValue(':par_id_delegue', $deplacement->getDelegue()->getId(), PDO::PARAM_INT);
             // on demande l'exécution de la requête 
             $ret = $req->execute();
         } catch (PDOException $e) {

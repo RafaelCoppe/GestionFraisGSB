@@ -7,11 +7,12 @@ class DeplacementsPharmacieController extends Controller
         parent::__construct();
         require_once(ROOT . '/model/repository/DeplacementPharmacieRepository.php');
         require_once(ROOT . '/model/entity/DeplacementPharmacie.php');
+        require_once(ROOT . '/model/entity/Pharmacie.php');
         require_once(ROOT . '/model/entity/Produits.php');
     }
     public function ajoutDeplacementPharmacieForm()
     {
-        $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un déplacement en pharmacie"));
+        $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un déplacement en pharmacie", "lesPharmacies" => $lesPharmacies));
     }
     public function ajoutDeplacementPharmacieTrait()
     {
