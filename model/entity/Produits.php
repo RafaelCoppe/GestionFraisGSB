@@ -1,17 +1,15 @@
 <?php
 class Produits
 {
-	private int $id;
-	private date $id_deplacement;
+	private ?int $id;
     private string $produit_nom;
-    private string $produit_type;
+    private Produit_Type $leTypeProduit;
 
-	public function __construct($id, $id_deplacement, $produit_nom, $produit_type)
+	public function __construct($id, $produit_nom, $leTypeProduit)
 	{
 		$this->id = $id;
-		$this->id_deplacement = $id_deplacement;
 		$this->produit_nom = $produit_nom;
-		$this->produit_type = $produit_type;
+		$this->leTypeProduit = $leTypeProduit;
 	}
 	public function getId()
 	{
@@ -21,14 +19,6 @@ class Produits
 	{
 		$this->id = $id;
     }
-    public function getIdDeplacement()
-	{
-		return $this->id_deplacement;
-	}
-	public function setIdDeplacement($idDeplacement)
-	{
-		$this->id_deplacement = $idDeplacement;
-    }
     public function getNomProduit()
 	{
 		return $this->produit_nom;
@@ -37,12 +27,12 @@ class Produits
 	{
 		$this->produit_nom = $nomProduit;
     }
-    public function getTypeProduit()
+    public function getLeTypeProduit()
 	{
-		return $this->produit_type;
+		return $this->leTypeProduit;
 	}
-	public function setTypeProduit($typeProduit)
+	public function setLeTypeProduit($leTypeProduit)
 	{
-		$this->produit_type = $typeProduit;
+		$this->leTypeProduit = $leTypeProduit;
     }
 }

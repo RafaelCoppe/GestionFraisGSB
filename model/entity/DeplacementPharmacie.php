@@ -3,17 +3,15 @@ class DeplacementPharmacie
 {
 	private ?int $id;
 	private ?string $date;
-    private string $pharmacie_nom;
-    private string $pharmacie_adresse;
+    private Pharmacie $laPharmacie;
     private string $commentaire;
     private ?int $id_delegue;
 
-	public function __construct($id, $date, $pharmacie_nom, $pharmacie_adresse, $commentaire, $id_delegue)
+	public function __construct($id, $date, $laPharmacie, $commentaire, $id_delegue)
 	{
 		$this->id = $id;
 		$this->date = $date;
-		$this->pharmacie_nom = $pharmacie_nom;
-		$this->pharmacie_adresse = $pharmacie_adresse;
+		$this->laPharmacie = $laPharmacie;
 		$this->commentaire = $commentaire;
 		$this->id_delegue = $id_delegue;
 	}
@@ -33,21 +31,13 @@ class DeplacementPharmacie
 	{
 		$this->date = $date;
     }
-    public function getNomPharmacie()
+    public function getLaPharmacie()
 	{
-		return $this->id;
+		return $this->laPharmacie;
 	}
-	public function setNomPharmacie($nomPharmacie)
+	public function setLaPharmacie($laPharmacie)
 	{
-		$this->pharmacie_nom = $nomPharmacie;
-    }
-    public function getAdressePharmacie()
-	{
-		return $this->pharmacie_adresse;
-	}
-	public function setAdressePharmacie($adressePharmacie)
-	{
-		$this->pharmacie_adresse = $adressePharmacie;
+		$this->laPharmacie = $laPharmacie;
     }
     public function getCommentaire()
 	{
