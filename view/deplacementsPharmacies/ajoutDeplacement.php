@@ -1,12 +1,6 @@
 <h1 class="text-center">Ajout d'un deplacement en pharmacie</h1>
 <form action="index.php?action=ajoutDepPharmaFormTrait" method='post'>
     <div class="row mb-3">
-        <label for="comment" class="col-lg-4 col-form-label">Commentaire</label>
-        <div class="col-sm-12">
-            <input type="text" class="form-control" name="commentaire" id="comment">
-        </div>
-    </div>
-    <div class="row mb-3">
         <label for="pharmacie" class="col-lg-4 col-form-label">Pharmacie visitée</label>
         <div class="col-sm-12">
             <!-- liste déroulante -->
@@ -22,7 +16,13 @@
             </select>
         </div>
     </div>
-
+    
+    <div class="row mb-3">
+        <label for="comment" class="col-lg-4 col-form-label">Commentaire</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" name="commentaire" id="comment">
+        </div>
+    </div>
 
     <div class="p-3 mb-4">
         <div class="text-center">
