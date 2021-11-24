@@ -4,14 +4,14 @@ class Pharmacie
 	private ?int $id;
     private string $nom;
     private string $adresse;
-    private int $id_ville;
+    private Ville $laVille;
 
-	public function __construct($id, $nom, $adresse, $id_ville)
+	public function __construct($id, $nom, $adresse, $laVille)
 	{
 		$this->id = $id;
 		$this->nom = $nom;
 		$this->adresse = $adresse;
-		$this->id_ville = $id_ville;
+		$this->laVille = $laVille;
 	}
 	public function getId()
 	{
@@ -37,12 +37,12 @@ class Pharmacie
 	{
 		$this->adresse = $adresse;
     }
-    public function getIdVille()
+    public function getLaVille()
 	{
-		return $this->id_ville;
+		return $this->laVille;
 	}
-	public function setIdVille($id_ville)
+	public function setLaVille($laVille)
 	{
-		$this->id_ville = $id_ville;
+		$this->laVille = $laVille;
     }
 }

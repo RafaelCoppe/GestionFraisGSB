@@ -5,15 +5,15 @@ class DeplacementPharmacie
 	private ?string $date;
     private Pharmacie $laPharmacie;
     private string $commentaire;
-    private ?int $id_delegue;
+    private ?Utilisateur $leDelegue;
 
-	public function __construct($id, $date, $laPharmacie, $commentaire, $id_delegue)
+	public function __construct($id, $date, $laPharmacie, $commentaire, $leDelegue)
 	{
 		$this->id = $id;
 		$this->date = $date;
 		$this->laPharmacie = $laPharmacie;
 		$this->commentaire = $commentaire;
-		$this->id_delegue = $id_delegue;
+		$this->leDelegue = $leDelegue;
 	}
 	public function getId()
 	{
@@ -47,12 +47,12 @@ class DeplacementPharmacie
 	{
 		$this->commentaire = $commentaire;
     }
-    public function getIdDelegue()
+    public function getDelegue()
 	{
-		return $this->id_delegue;
+		return $this->leDelegue;
 	}
-	public function setIdDelegue($idDelegue)
+	public function setDelegue($leDelegue)
 	{
-		$this->id_delegue = $idDelegue;
+		$this->leDelegue = $leDelegue;
 	}
 }
