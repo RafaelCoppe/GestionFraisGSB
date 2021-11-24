@@ -28,9 +28,9 @@ class PharmacieRepository extends Repository
     {
         $lesPharmacies = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("select pharmacie.*, ville_france.nom AS nomVille, ville_france.ville_code_postal AS CPVille
+        $req = $db->prepare("select pharmacie.*, ville_france.ville_nom_simple AS nomVille, ville_france.ville_code_postal AS CPVille
         from pharmacie
-        JOIN ville_france ON pharmacie.id_ville = ville_france.id");
+        JOIN ville_france ON pharmacie.id_ville = ville_france.ville_id");
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
@@ -40,7 +40,6 @@ class PharmacieRepository extends Repository
                 $enreg->nom,
                 $enreg->adresse,
                 new Ville($enreg->id_ville, $enreg->nomVille, $enreg->CPVille),
-                null
             );
             array_push($lesPharmacies, $unePharmacie);
         }

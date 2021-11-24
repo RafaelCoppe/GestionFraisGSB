@@ -6,8 +6,10 @@ class DeplacementsPharmacieController extends Controller
     {
         parent::__construct();
         require_once(ROOT . '/model/repository/DeplacementPharmacieRepository.php');
+        require_once(ROOT . '/model/repository/PharmacieRepository.php');
         require_once(ROOT . '/model/entity/DeplacementPharmacie.php');
         require_once(ROOT . '/model/entity/Pharmacie.php');
+        require_once(ROOT . '/model/entity/Ville.php');
         require_once(ROOT . '/model/entity/Produit.php');
     }
     public function ajoutDeplacementPharmacieForm()
