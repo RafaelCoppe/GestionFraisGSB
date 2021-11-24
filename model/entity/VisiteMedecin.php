@@ -1,5 +1,5 @@
 <?php 
-class VisitesChezMedecins {
+class VisiteMedecin {
     private int $id;
     private string $dateSaisie;
     private string $commentaire;

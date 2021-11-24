@@ -1,12 +1,12 @@
 <?php
 
-class VisitesMedecinsController extends Controller
+class VisiteMedecinController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        require_once(ROOT . '/model/repository/VisitesChezMedecinsRepository.php');
-        require_once(ROOT . '/model/entity/VisitesChezMedecins.php');
+        require_once(ROOT . '/model/repository/VisiteMedecinRepository.php');
+        require_once(ROOT . '/model/entity/VisiteMedecin.php');
         require_once(ROOT . '/model/entity/Medecin.php');
         require_once(ROOT . '/model/entity/Utilisateur.php');
     }
@@ -15,13 +15,13 @@ class VisitesMedecinsController extends Controller
         $MedecinRepository = new MedecinRepository();
         $leMedecin = $MedecinRepository->getMedecin();
 
-        $this->render("VisitesMedecins/ajoutVisitesMedecins", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesVisitesMedecins));
+        $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesVisitesMedecins));
     }
-    public function ajoutVisitesMedecinsTrait()
+    public function ajoutVisiteMedecinTrait()
     { 
         session_start();
         $idUtilConnecte = $_SESSION['id'];
-        $laVisite = new VisitesMedecins(
+        $laVisite = new VisiteMedecin(
             null,
             date('Y-m-d H:i:s'),
             $_POST['commentaire'],
@@ -29,7 +29,7 @@ class VisitesMedecinsController extends Controller
             new Utilisateur($idUtilConnecte)
         );
         $MedecinRepository = new MedecinRepository();
-        $ret = $MedecinRepository->ajoutVisitesMedecins($laVisite);
+        $ret = $MedecinRepository->ajoutVisiteMedecin($laVisite);
 
         //
         if ($ret == false) {
@@ -42,7 +42,7 @@ class VisitesMedecinsController extends Controller
         //
         $MedecinRepository = new MedecinRepository();
         $leMedecin = $MedecinRepository->getMedecin();
-        $this->render("VisitesMedecins/ajoutVisitesMedecins", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesVisitesMedecins, "msg" => $msg));
+        $this->render("VisitesMedecins/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesVisitesMedecins, "msg" => $msg));
     }
 
 };
