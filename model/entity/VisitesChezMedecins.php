@@ -4,13 +4,15 @@ class VisitesChezMedecins {
     private string $dateSaisie;
     private string $commentaire;
     private Medecin $leMedecin;
+	private Utilisateur $leDelegue;
 
-    public function __construct($id, $dateSaisie, $commentaire, $leMedecin)
+    public function __construct($id, $dateSaisie, $commentaire, $leMedecin, $leDelegue)
 	{
 		$this->id = $id;
 		$this->dateSaisie = $dateSaisie;
 		$this->commentaire = $commentaire;
         $this->leMedecin = $leMedecin;
+		$this->leDelegue = $leDelegue;
 	}
 	public function getId()
 	{
@@ -43,6 +45,14 @@ class VisitesChezMedecins {
 	public function setMedecin($leMedecin)
 	{
 		$this->leMedecin = $leMedecin;
+	}
+	public function getDelegue()
+	{
+		return $this->leDelegue;
+	}
+	public function setDelegue($leDelegue)
+	{
+		$this->leDelegue = $leDelegue;
 	}
 }
 ?>
