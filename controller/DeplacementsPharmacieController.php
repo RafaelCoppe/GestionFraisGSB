@@ -48,14 +48,12 @@ class DeplacementsPharmacieController extends Controller
         $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un deplacement en pharmacie", "lesPharmacies" => $lesPharmacies, "msg" => $msg));
     }
 
-    /*public function consultDeplacementPharmacie()
+    public function consultDeplacementsPharmacie()
     {
         session_start();
-        $idUtilConnecte = $_SESSION['profil'];
-        
-        $unDemRemboursRepository = new DemandeRemboursementRepository();
-        $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
+        $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDemandesRemboursement();
 
-        $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDemandes" => $lesDemandes));
-    }*/
+        $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDeplacements" => $lesDeplacements));
+    }
 };

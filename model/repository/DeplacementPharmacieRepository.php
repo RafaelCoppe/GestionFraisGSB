@@ -25,16 +25,14 @@ class DeplacementPharmacieRepository extends Repository
         }
         return $ret;
     }
-    /*public function getMesDemandesRemboursement($idDelegue = null)
+    public function getLesDemandesRemboursement($idDelegue = null)
     {
         $lesDemandes = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("select demande_remboursement.id as id, 
-                        DATE_FORMAT(date_saisie, '%d/%m/%Y à %H:%i:%s') as date_saisie, 
-                        type_frais.libelle,montant, commentaire
-                        from demande_remboursement 
-                join type_frais on type_frais.id = id_type_frais
-                where id_delegue = " . $idDelegue);
+        $req = $db->prepare("SELECT CONCAT(pharmacie.nom, ', ', pharmacie.adresse, ', ', ville_france.ville_nom_simple) AS Pharmacie, CONCAT(utilisateur.nom, ' ', utilisateur.prenom) AS Délegué, commentaire AS Commentaire FROM deplacement_pharmacie
+        JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
+        JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
+        JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue");
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
@@ -50,5 +48,5 @@ class DeplacementPharmacieRepository extends Repository
             array_push($lesDemandes, $uneDemande);
         }
         return $lesDemandes;
-    }*/
+    }
 }

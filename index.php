@@ -104,7 +104,7 @@ if (isset($_GET['action'])) {
             require(ROOT . "/controller/Controller.php");
             require(ROOT . "/controller/DeplacementsPharmacieController.php");
             $leControleur = new DeplacementsPharmacieController();
-            $leControleur->consultMesDeplacementsPharmacie();
+            $leControleur->consultDeplacementsPharmacie();
             break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
