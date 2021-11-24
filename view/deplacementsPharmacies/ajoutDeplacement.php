@@ -16,10 +16,10 @@
         <label for="typeFrais" class="col-lg-4 col-form-label">Type de frais</label>
         <div class="col-sm-12">
             <!-- liste déroulante -->
-            <select class="form-select form-select-md" name="typeFrais">
-                <?php foreach ($lesTypesFrais as $unType) {
-                    $id = $unType->getId();
-                    $lib = $unType->getLibelle();
+            <select class="form-select form-select-md" name="pharmacie">
+                <?php foreach ($lesPharmacies as $unePharma) {
+                    $id = $unePharma->getId();
+                    $lib = $unePharma->getNom() . ", " . $unePharma->GetAdresse() . " " . $unePharma->getLaVille()->GetCodePostal() . " " . $unePharma->getLaVille()->GetNom();
                     if (isset($_POST['typeFrais']) == true && $_POST['typeFrais'] == $unType->getId())
                         echo ("<option selected value=$id>$lib</option>");
                     else
