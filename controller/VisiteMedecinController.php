@@ -16,7 +16,7 @@ class VisiteMedecinController extends Controller
         $medecinRepository = new MedecinRepository();
         $lesMedecins = $medecinRepository->getLesMedecins();
 
-        $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesMedecins));
+        $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesMedecins" => $lesMedecins));
     }
     public function ajoutVisiteMedecinTrait()
     { 
@@ -26,7 +26,7 @@ class VisiteMedecinController extends Controller
             null,
             date('Y-m-d H:i:s'),
             $_POST['commentaire'],
-            new Medecin ($_POST['nom'], null, $_POST['prenom']),
+            new Medecin (null, $_POST['nom'], $_POST['prenom']),
             new Utilisateur($idUtilConnecte)
         );
         $uneVisiteRepository = new VisiteMedecinRepository();
@@ -43,7 +43,7 @@ class VisiteMedecinController extends Controller
         //
         $medecinRepository = new MedecinRepository();
         $lesMedecins = $medecinRepository->getLesMedecins();
-        $this->render("VisitesMedecins/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesMedecins, "msg" => $msg));
+        $this->render("VisitesMedecins/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesMedecins" => $lesMedecins, "msg" => $msg));
     }
 
 };

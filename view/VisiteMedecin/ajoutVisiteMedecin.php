@@ -11,13 +11,14 @@
         <div class="col-sm-12">
             <!-- liste déroulante -->
             <select class="form-select form-select-md" name="VisiteMedecin">
-                <?php foreach ($lesVisitesMedecins as $unType) {
-                    $id = $unType->getId();
-                    $nom = $unType->getNom();
-                    if (isset($_POST['VisiteMedecin']) == true && $_POST['VisiteMedecin'] == $unType->getId())
-                        echo ("<option selected value=$id>$lib</option>");
+                <?php foreach ($lesMedecins as $unMedecin) {
+                    $id = $unMedecin->getId();
+                    $nom = $unMedecin->getNom();
+                    $prenom = $unMedecin->getPrenom();
+                    if (isset($_POST['lesMedecins']) == true && $_POST['lesMedecins'] == $unMedecin->getId())
+                        echo ("<option selected value=$id>$nom $prenom</option>");
                     else
-                        echo ("<option value=$id>$lib</option>");
+                        echo ("<option value=$id>$nom $prenom</option>");
                 } ?>
             </select>
         </div>
