@@ -24,5 +24,5 @@ class VisiteMedecinRepository extends Repository
         }
         return $ret;
     }
- 
+    
 }

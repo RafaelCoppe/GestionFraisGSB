@@ -44,8 +44,6 @@ if (isset($_GET['action'])) {
                 $leControleur->ajoutDemandeRemboursementTrait();
                 break;
             case "ajoutVisiteMedecinTrait":
-                // le formulaire d'ajout d'une demande de remboursement a été soumis.
-                // Vérification et enregistrement des informations saisies
                 require(ROOT . "/controller/Controller.php");
                 require(ROOT . "/controller/VisiteMedecinController.php");
                 $leControleur = new VisiteMedecinController();
@@ -63,7 +61,6 @@ if (isset($_GET['action'])) {
                     $leControleur->connexionForm();
                     break;
                 }
-                // demande du formulaire d'ajout d'une demande de remboursement
                 require(ROOT . "/controller/Controller.php");
                 require(ROOT . "/controller/VisiteMedecinController.php");
                 $leControleur = new VisiteMedecinController();
@@ -98,6 +95,12 @@ if (isset($_GET['action'])) {
             require(ROOT . "/controller/DemandeRemboursementController.php");
             $leControleur = new DemandeRemboursementController();
             $leControleur->consultMesDemandeRemboursement();
+            break;
+        case "consultVisiteMedecin":
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/VisiteMedecinController.php");
+            $leControleur = new VisiteMedecinController();
+            $leControleur->consultVisiteMedecin();
             break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 

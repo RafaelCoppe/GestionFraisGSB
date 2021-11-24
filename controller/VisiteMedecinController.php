@@ -45,4 +45,14 @@ class VisiteMedecinController extends Controller
         $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesMedecins" => $lesMedecins, "msg" => $msg));
     }
 
+    public function consultVisiteMedecin()
+    {
+        session_start();
+        $idUtilConnecte = $_SESSION['profil'];
+        
+        $unDemRemboursRepository = new DemandeRemboursementRepository();
+        $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
+
+        $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDemandes" => $lesDemandes));
+    }
 };
