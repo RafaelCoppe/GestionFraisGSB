@@ -1,12 +1,12 @@
 <?php 
 class VisiteMedecin {
-    private int $id;
-    private string $dateSaisie;
-    private string $commentaire;
-    private Medecin $leMedecin;
-	private Utilisateur $leDelegue;
+    private ?int $id;
+    private ?string $dateSaisie;
+    private ?string $commentaire;
+    private ?Medecin $leMedecin;
+	private ?Utilisateur $leDelegue;
 
-    public function __construct($id, $dateSaisie, $commentaire, $leMedecin, $leDelegue)
+    public function __construct($id, $dateSaisie = null, $commentaire = null, $leMedecin =null, $leDelegue=null )
 	{
 		$this->id = $id;
 		$this->dateSaisie = $dateSaisie;

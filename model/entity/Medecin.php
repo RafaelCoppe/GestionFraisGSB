@@ -1,10 +1,10 @@
 <?php 
 class Medecin {
-    private int $id;
-    private string $nom;
-    private string $prenom;
+    private ?int $id;
+    private ?string $nom;
+    private ?string $prenom;
 
-    public function __construct($id, $nom, $prenom)
+    public function __construct($id, $nom = null, $prenom = null)
 	{
 		$this->id = $id;
 		$this->nom = $nom;

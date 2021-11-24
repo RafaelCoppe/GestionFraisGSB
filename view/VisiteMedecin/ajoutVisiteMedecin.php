@@ -7,15 +7,15 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="VisiteMedecin" class="col-lg-4 col-form-label">Médecins</label>
+        <label for="medecin" class="col-lg-4 col-form-label">Médecins</label>
         <div class="col-sm-12">
             <!-- liste déroulante -->
-            <select class="form-select form-select-md" name="VisiteMedecin">
+            <select class="form-select form-select-md" name="visiteMedecin">
                 <?php foreach ($lesMedecins as $unMedecin) {
                     $id = $unMedecin->getId();
                     $nom = $unMedecin->getNom();
                     $prenom = $unMedecin->getPrenom();
-                    if (isset($_POST['lesMedecins']) == true && $_POST['lesMedecins'] == $unMedecin->getId())
+                    if (isset($_POST['visiteMedecin']) == true && $_POST['visiteMedecin'] == $unMedecin->getId())
                         echo ("<option selected value=$id>$nom $prenom</option>");
                     else
                         echo ("<option value=$id>$nom $prenom</option>");

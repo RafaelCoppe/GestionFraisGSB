@@ -26,7 +26,7 @@ class VisiteMedecinController extends Controller
             null,
             date('Y-m-d H:i:s'),
             $_POST['commentaire'],
-            new Medecin (null, $_POST['nom'], $_POST['prenom']),
+            new Medecin ($_POST['visiteMedecin']),
             new Utilisateur($idUtilConnecte)
         );
         $uneVisiteRepository = new VisiteMedecinRepository();
@@ -36,14 +36,13 @@ class VisiteMedecinController extends Controller
         if ($ret == false) {
             $msg = "<p class='text-danger'>ERREUR : votre visite n'a pas été enregistrée</p>";
         } else {
-            $_POST = array();
             $msg = "<p class='text-success'>Votre visite a été enregistrée</p>";
         }
 
         //
         $medecinRepository = new MedecinRepository();
         $lesMedecins = $medecinRepository->getLesMedecins();
-        $this->render("VisitesMedecins/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesMedecins" => $lesMedecins, "msg" => $msg));
+        $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesMedecins" => $lesMedecins, "msg" => $msg));
     }
 
 };
