@@ -42,7 +42,10 @@ class DeplacementsPharmacieController extends Controller
             $msg = "<p class='text-success'>Votre demande a été enregistrée</p>";
         }
         //
-        $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un deplacement en pharmacie", "msg" => $msg));
+        $PharmacieRepository = new PharmacieRepository();
+        $lesPharmacies = $PharmacieRepository->getLesPharmacies();
+
+        $this->render("deplacementsPharmacies/ajoutDeplacement", array("title" => "Ajout d'un deplacement en pharmacie", "lesPharmacies" => $lesPharmacies, "msg" => $msg));
     }
 
     /*public function consultDeplacementPharmacie()

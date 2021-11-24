@@ -14,12 +14,13 @@ class DeplacementPharmacieRepository extends Repository
             // on affecte une valeur au paramètre déclaré dans la requête 
             // récupération de la date du jour 
             $req->bindValue(':par_date_saisie', $deplacement->getDate(), PDO::PARAM_STR);
-            $req->bindValue(':par_pharma_nom', $deplacement->getLaPharmacie()->GetId(), PDO::PARAM_INT);
+            $req->bindValue(':par_pharma_id', $deplacement->getLaPharmacie()->GetId(), PDO::PARAM_INT);
             $req->bindValue(':par_commentaire', $deplacement->getCommentaire(), PDO::PARAM_STR);
             $req->bindValue(':par_id_delegue', $deplacement->getDelegue()->getId(), PDO::PARAM_INT);
             // on demande l'exécution de la requête 
             $ret = $req->execute();
         } catch (PDOException $e) {
+            echo $e;die;
             $ret = false;
         }
         return $ret;
