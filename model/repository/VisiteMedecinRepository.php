@@ -4,7 +4,7 @@ require_once("Repository.php");
 
 class VisiteMedecinRepository extends Repository
 {
-    public function ajoutVisiteMedecin(VisiteChezMedecin $visACreer)
+    public function ajoutVisiteMedecin(VisiteMedecin $visACreer)
     {
         $db = $this->dbConnect();
         try {

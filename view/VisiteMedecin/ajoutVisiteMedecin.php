@@ -1,5 +1,5 @@
-<h1 class="text-center">Ajout d'une visite chez le medecin</h1>
-<form action="index.php?action=ajoutVisitesMedecinsTrait" method='post'>
+<h1 class="text-center">Ajout d'une visite chez le médecin</h1>
+<form action="index.php?action=ajoutVisiteMedecinTrait" method='post'>
     <div class="row mb-3">
         <label for="comment" class="col-lg-4 col-form-label">Commentaire</label>
         <div class="col-sm-12">
@@ -7,14 +7,14 @@
         </div>
     </div>
     <div class="row mb-3">
-        <label for="typeFrais" class="col-lg-4 col-form-label">Type de frais</label>
+        <label for="VisiteMedecin" class="col-lg-4 col-form-label">Médecins</label>
         <div class="col-sm-12">
             <!-- liste déroulante -->
-            <select class="form-select form-select-md" name="typeFrais">
-                <?php foreach ($lesTypesFrais as $unType) {
+            <select class="form-select form-select-md" name="VisiteMedecin">
+                <?php foreach ($lesVisitesMedecins as $unType) {
                     $id = $unType->getId();
-                    $lib = $unType->getLibelle();
-                    if (isset($_POST['typeFrais']) == true && $_POST['typeFrais'] == $unType->getId())
+                    $nom = $unType->getNom();
+                    if (isset($_POST['VisiteMedecin']) == true && $_POST['VisiteMedecin'] == $unType->getId())
                         echo ("<option selected value=$id>$lib</option>");
                     else
                         echo ("<option value=$id>$lib</option>");
@@ -23,12 +23,12 @@
         </div>
     </div>
 
-
     <div class="p-3 mb-4">
         <div class="text-center">
             <button type="submit" class="btn btn-primary">Enregistrer</button>
         </div>
     </div>
+
 </form>
 <?php
 if (isset($msg)) echo $msg;

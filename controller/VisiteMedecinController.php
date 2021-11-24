@@ -6,16 +6,17 @@ class VisiteMedecinController extends Controller
     {
         parent::__construct();
         require_once(ROOT . '/model/repository/VisiteMedecinRepository.php');
+        require_once(ROOT . '/model/repository/MedecinRepository.php');
         require_once(ROOT . '/model/entity/VisiteMedecin.php');
         require_once(ROOT . '/model/entity/Medecin.php');
         require_once(ROOT . '/model/entity/Utilisateur.php');
     }
-    public function ajoutVisitesMedecinsForm()
+    public function ajoutVisiteMedecinForm()
     {
-        $MedecinRepository = new MedecinRepository();
-        $leMedecin = $MedecinRepository->getMedecin();
+        $medecinRepository = new MedecinRepository();
+        $lesMedecins = $medecinRepository->getLesMedecins();
 
-        $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesVisitesMedecins));
+        $this->render("VisiteMedecin/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesMedecins));
     }
     public function ajoutVisiteMedecinTrait()
     { 
@@ -25,24 +26,24 @@ class VisiteMedecinController extends Controller
             null,
             date('Y-m-d H:i:s'),
             $_POST['commentaire'],
-            new leMedecin ($_POST['medecin'], null),
+            new Medecin ($_POST['nom'], null, $_POST['prenom']),
             new Utilisateur($idUtilConnecte)
         );
-        $MedecinRepository = new MedecinRepository();
-        $ret = $MedecinRepository->ajoutVisiteMedecin($laVisite);
+        $uneVisiteRepository = new VisiteMedecinRepository();
+        $ret = $uneVisiteRepository->ajoutVisiteMedecin($laVisite);
 
         //
         if ($ret == false) {
-            $msg = "<p class='text-danger'>ERREUR : votre demande n'a pas été enregistrée</p>";
+            $msg = "<p class='text-danger'>ERREUR : votre visite n'a pas été enregistrée</p>";
         } else {
             $_POST = array();
-            $msg = "<p class='text-success'>Votre demande a été enregistrée</p>";
+            $msg = "<p class='text-success'>Votre visite a été enregistrée</p>";
         }
 
         //
-        $MedecinRepository = new MedecinRepository();
-        $leMedecin = $MedecinRepository->getMedecin();
-        $this->render("VisitesMedecins/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesVisitesMedecins, "msg" => $msg));
+        $medecinRepository = new MedecinRepository();
+        $lesMedecins = $medecinRepository->getLesMedecins();
+        $this->render("VisitesMedecins/ajoutVisiteMedecin", array("title" => "Ajout d'une visite chez le médecin", "lesVisitesMedecins" => $lesMedecins, "msg" => $msg));
     }
 
 };
