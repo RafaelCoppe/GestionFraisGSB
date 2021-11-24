@@ -11,6 +11,7 @@ class DeplacementsPharmacieController extends Controller
         require_once(ROOT . '/model/entity/Pharmacie.php');
         require_once(ROOT . '/model/entity/Ville.php');
         require_once(ROOT . '/model/entity/Produit.php');
+        require_once(ROOT . '/model/entity/Utilisateur.php');
     }
     public function ajoutDeplacementPharmacieForm()
     {
@@ -26,8 +27,7 @@ class DeplacementsPharmacieController extends Controller
         $leDeplacement = new DeplacementPharmacie(
             null,
             date('Y-m-d H:i:s'),
-            $_POST['pharmacie_nom'],
-            $_POST['pharmacie_adresse'],
+            new Pharmacie($_POST['pharmacie']),
             $_POST['commentaire'],
             new Utilisateur($idUtilConnecte)
         );

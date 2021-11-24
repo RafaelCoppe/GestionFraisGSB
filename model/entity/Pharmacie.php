@@ -2,11 +2,11 @@
 class Pharmacie
 {
 	private ?int $id;
-    private string $nom;
-    private string $adresse;
-    private Ville $laVille;
+    private ?string $nom;
+    private ?string $adresse;
+    private ?Ville $laVille;
 
-	public function __construct($id, $nom, $adresse, $laVille)
+	public function __construct($id, $nom = null, $adresse = null, $laVille = null)
 	{
 		$this->id = $id;
 		$this->nom = $nom;

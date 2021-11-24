@@ -91,6 +91,14 @@ if (isset($_GET['action'])) {
             $leControleur = new DeplacementsPharmacieController();
             $leControleur->ajoutDeplacementPharmacieForm();
             break;
+        case "ajoutDepPharmaTrait":
+            // le formulaire d'ajout d'un déplacement chez le pharmacien a été soumis.
+            // Vérification et enregistrement des informations saisies
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->ajoutDeplacementPharmacieTrait();
+            break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
             // Vérification des informations saisies

@@ -1,5 +1,5 @@
 <h1 class="text-center">Ajout d'un deplacement en pharmacie</h1>
-<form action="index.php?action=ajoutDepPharmaFormTrait" method='post'>
+<form action="index.php?action=ajoutDepPharmaTrait" method='post'>
     <div class="row mb-3">
         <label for="pharmacie" class="col-lg-4 col-form-label">Pharmacie visitée</label>
         <div class="col-sm-12">
