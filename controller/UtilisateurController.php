@@ -97,4 +97,12 @@ class UtilisateurController extends Controller
         }
         $this->render("utilisateur/ajoutUtilisateur", array("title" => "Ajout d'un utilisateur", "msg" => $msg));
     }
+
+    public function consultDelegueList()
+    {
+        $utilisateurRepository = new UtilisateurRepository();
+        $lesDelegues = $utilisateurRepository->getDelegueList();
+
+        $this->render("VisiteMedecin/consultDelegueList", array("title" => "Liste des demandes de remboursement", "lesDelegues" => $lesDelegues));
+    }
 }

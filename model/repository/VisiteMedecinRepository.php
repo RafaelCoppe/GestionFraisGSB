@@ -30,7 +30,7 @@ class VisiteMedecinRepository extends Repository
         $lesVisites = array();
         $db = $this->dbConnect();
         $req = $db->prepare("select visite_medecin.id as id, 
-                    DATE_FORMAT(date_saisie, '%d/%m/%Y à %H:%i:%s') as date_saisie, commentaire, medecin.nom 
+                    DATE_FORMAT(date_saisie, '%d/%m/%Y à %H:%i:%s') as date_saisie, commentaire, medecin.nom, medecin.prenom
                     from visite_medecin 
                     join medecin on medecin.id = id_medecin
                     where id_delegue = " . $idDelegue);
@@ -42,7 +42,7 @@ class VisiteMedecinRepository extends Repository
                 $enreg->id,
                 $enreg->date_saisie,
                 $enreg->commentaire,
-                new Medecin(null, $enreg->nom),
+                new Medecin(null, $enreg->nom, $enreg->prenom),
                 null
             );
             array_push($lesVisites, $uneVisite);

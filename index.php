@@ -96,6 +96,12 @@ if (isset($_GET['action'])) {
             $leControleur = new DemandeRemboursementController();
             $leControleur->consultMesDemandeRemboursement();
             break;
+        case "consultDelegueList":
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/UtilisateurController.php");
+            $leControleur = new UtilisateurController();
+            $leControleur->consultDelegueList();
+            break;
         case "consultVisiteMedecin":
             require(ROOT . "/controller/Controller.php");
             require(ROOT . "/controller/VisiteMedecinController.php");

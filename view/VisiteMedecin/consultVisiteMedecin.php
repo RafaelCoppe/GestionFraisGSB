@@ -18,7 +18,7 @@ if (count($lesVisites) == 0) {
             echo ("<tr>");
             echo ("<td>" . $uneVisite->getDateSaisie() . "</td>");
             echo ("<td>" . $uneVisite->getCommentaire() . "</td>");
-            echo ("<td>" . $uneVisite->getMedecin()->getNom()->getPrenom() . "</td>");
+            echo ("<td>" . $uneVisite->getMedecin()->getNom() . ' ' .$uneVisite->getMedecin()->getPrenom() . "</td>");
             echo ("</tr>");
         } ?>
     </table>

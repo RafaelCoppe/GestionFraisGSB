@@ -47,12 +47,9 @@ class VisiteMedecinController extends Controller
 
     public function consultVisiteMedecin()
     {
-        session_start();
-        $idUtilConnecte = $_SESSION['profil'];
-        
         $visiteMedecinRepository = new visiteMedecinRepository();
-        $lesVisitesMedecins = $visiteMedecinRepository->getVisiteMedecin($idUtilConnecte);
+        $lesVisites = $visiteMedecinRepository->getVisiteMedecin($_POST['listDelegue']);
 
-        $this->render("VisiteMedecin/consultVisiteMedecin", array("title" => "Liste des visites chez le medecin", "lesVisitesMedecins" => $lesVisitesMedecins));
+        $this->render("VisiteMedecin/consultVisiteMedecin", array("title" => "Liste des visites chez le medecin", "lesVisites" => $lesVisites));
     }
 };
