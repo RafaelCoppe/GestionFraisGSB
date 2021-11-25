@@ -50,9 +50,9 @@ class VisiteMedecinController extends Controller
         session_start();
         $idUtilConnecte = $_SESSION['profil'];
         
-        $medecinRepository = new MedecinRepository();
-        $lesMedecins = $medecinRepository->getVisiteMedecin($idUtilConnecte);
+        $visiteMedecinRepository = new visiteMedecinRepository();
+        $lesVisitesMedecins = $visiteMedecinRepository->getVisiteMedecin($idUtilConnecte);
 
-        $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des visites chez le medecin", "lesMedecins" => $lesMedecins));
+        $this->render("VisiteMedecin/consultVisiteMedecin", array("title" => "Liste des visites chez le medecin", "lesVisitesMedecins" => $lesVisitesMedecins));
     }
 };

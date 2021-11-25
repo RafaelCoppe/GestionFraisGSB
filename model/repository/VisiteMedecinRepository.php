@@ -24,30 +24,29 @@ class VisiteMedecinRepository extends Repository
         }
         return $ret;
     }
+    
     public function getVisiteMedecin($idDelegue = null)
     {
-        $lesDemandes = array();
+        $lesVisites = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("select demande_remboursement.id as id, 
-                        DATE_FORMAT(date_saisie, '%d/%m/%Y à %H:%i:%s') as date_saisie, 
-                        type_frais.libelle,montant, commentaire
-                        from demande_remboursement 
-                join type_frais on type_frais.id = id_type_frais
-                where id_delegue = " . $idDelegue);
+        $req = $db->prepare("select visite_medecin.id as id, 
+                    DATE_FORMAT(date_saisie, '%d/%m/%Y à %H:%i:%s') as date_saisie, commentaire, medecin.nom 
+                    from visite_medecin 
+                    join medecin on medecin.id = id_medecin
+                    where id_delegue = " . $idDelegue);
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
         foreach ($lesEnregs  as $enreg) {
-            $uneDemande = new DemandeRemboursement(
+            $uneVisite = new VisiteMedecin(
                 $enreg->id,
                 $enreg->date_saisie,
-                $enreg->montant,
                 $enreg->commentaire,
-                new TypeFrais(null, $enreg->libelle),
+                new Medecin(null, $enreg->nom),
                 null
             );
-            array_push($lesDemandes, $uneDemande);
+            array_push($lesVisites, $uneVisite);
         }
-        return $lesDemandes;
+        return $lesVisites;
     }
 }
