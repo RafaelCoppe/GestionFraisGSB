@@ -25,11 +25,11 @@ class DeplacementPharmacieRepository extends Repository
         }
         return $ret;
     }
-    public function getLesDeplacementsPharmacie($idDelegue = null)
+    public function getLesDeplacementsPharmacie($idDelegue)
     {
         $lesDeplacements = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT deplacement_pharmacie.id, deplacement_pharmacie.date, deplacement_pharmacie.commentaire, pharmacie.id, pharmacie.nom, pharmacie.adresse, ville_france.ville_nom AS nomVille, ville_france.ville_code_postal AS CPVille FROM deplacement_pharmacie
+        $req = $db->prepare("SELECT deplacement_pharmacie.id, deplacement_pharmacie.date, deplacement_pharmacie.commentaire, pharmacie.id, pharmacie.nom AS nomPharmacie, pharmacie.adresse, ville_france.ville_nom AS nomVille, ville_france.ville_code_postal AS CPVille, utilisateur.nom, utilisateur.prenom FROM deplacement_pharmacie
         JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
         JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
         JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue");
@@ -42,11 +42,11 @@ class DeplacementPharmacieRepository extends Repository
                 $enreg->date,
                 $unePharmacie = new Pharmacie(
                     $enreg->id,
-                    $enreg->nom,
+                    $enreg->nomPharmacie,
                     $enreg->adresse,
                     new Ville(null, null, $enreg->nomVille, $enreg->CPVille)),
                 $enreg->commentaire,
-                null,
+                new Utilisateur($idDelegue, $enreg->nom, $enreg->prenom),
                 );
             array_push($lesDeplacements, $unDeplacement);
         }
