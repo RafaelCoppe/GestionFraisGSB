@@ -52,7 +52,7 @@ class DeplacementsPharmacieController extends Controller
     {
         session_start();
         $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
-        $lesDeplacements = $undeplacementPharmacieRepository->getLesDemandesRemboursement();
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacie();
 
         $this->render("demandeRemboursement/consultDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDeplacements" => $lesDeplacements));
     }

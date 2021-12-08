@@ -2,6 +2,7 @@
 class Ville
 {
 	private ?int $id;
+	private ?int $departement;
     private string $nom;
     private string $codePostal;
 
@@ -18,6 +19,14 @@ class Ville
 	public function setId($id)
 	{
 		$this->id = $id;
+	}
+	public function getDepartement()
+	{
+		return $this->departement;
+	}
+	public function setDepartement($departement)
+	{
+		$this->departement = $departement;
     }
     public function getNom()
 	{

@@ -25,11 +25,11 @@ class DeplacementPharmacieRepository extends Repository
         }
         return $ret;
     }
-    public function getLesDemandesRemboursement($idDelegue = null)
+    public function getLesDeplacementsPharmacie($idDelegue = null)
     {
-        $lesDemandes = array();
+        $lesDeplacements = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT CONCAT(pharmacie.nom, ', ', pharmacie.adresse, ', ', ville_france.ville_nom_simple) AS Pharmacie, CONCAT(utilisateur.nom, ' ', utilisateur.prenom) AS Délegué, commentaire AS Commentaire FROM deplacement_pharmacie
+        $req = $db->prepare("SELECT pharmacie.id, pharmacie.date, pharmacie.nom, pharmacie.adresse, ville_france.ville_nom AS nomVille, ville_france.ville_code_postal AS CPVille FROM deplacement_pharmacie
         JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
         JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
         JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue");
@@ -37,16 +37,19 @@ class DeplacementPharmacieRepository extends Repository
         $req->execute();
         $lesEnregs = $req->fetchAll();
         foreach ($lesEnregs  as $enreg) {
-            $uneDemande = new DemandeRemboursement(
+            $unDeplacement = new DeplacementPharmacie(
                 $enreg->id,
-                $enreg->date_saisie,
-                $enreg->montant,
+                $enreg->date,
+                $unePharmacie = new Pharmacie(
+                    $enreg->id,
+                    $enreg->nom,
+                    $enreg->adresse,
+                    new Ville($enreg->id_ville, $enreg->nomVille, $enreg->CPVille)),
                 $enreg->commentaire,
-                new TypeFrais(null, $enreg->libelle),
-                null
-            );
-            array_push($lesDemandes, $uneDemande);
+                null,
+                );
+            array_push($lesDeplacements, $unDeplacement);
         }
-        return $lesDemandes;
+        return $lesDeplacements;
     }
 }

@@ -100,7 +100,7 @@ if (isset($_GET['action'])) {
             $leControleur->ajoutDeplacementPharmacieTrait();
             break;
         case "ConsultToutDepPharma":
-            // affichage des demandes de remboursements saisies par le délegué
+            // affichage des déplacements en pharmacie saisies par le délegué
             require(ROOT . "/controller/Controller.php");
             require(ROOT . "/controller/DeplacementsPharmacieController.php");
             $leControleur = new DeplacementsPharmacieController();
