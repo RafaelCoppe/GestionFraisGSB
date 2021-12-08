@@ -39,7 +39,7 @@ class PharmacieRepository extends Repository
                 $enreg->id,
                 $enreg->nom,
                 $enreg->adresse,
-                new Ville($enreg->id_ville, $enreg->nomVille, $enreg->CPVille),
+                new Ville($enreg->id_ville, null, $enreg->nomVille, $enreg->CPVille),
             );
             array_push($lesPharmacies, $unePharmacie);
         }
