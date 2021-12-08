@@ -29,7 +29,7 @@ class DeplacementPharmacieRepository extends Repository
     {
         $lesDeplacements = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("SELECT pharmacie.id, pharmacie.date, pharmacie.nom, pharmacie.adresse, ville_france.ville_nom AS nomVille, ville_france.ville_code_postal AS CPVille FROM deplacement_pharmacie
+        $req = $db->prepare("SELECT deplacement_pharmacie.id, deplacement_pharmacie.date, deplacement_pharmacie.commentaire, pharmacie.id, pharmacie.nom, pharmacie.adresse, ville_france.ville_nom AS nomVille, ville_france.ville_code_postal AS CPVille FROM deplacement_pharmacie
         JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
         JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
         JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue");
@@ -44,7 +44,7 @@ class DeplacementPharmacieRepository extends Repository
                     $enreg->id,
                     $enreg->nom,
                     $enreg->adresse,
-                    new Ville($enreg->id_ville, $enreg->nomVille, $enreg->CPVille)),
+                    new Ville(null, null, $enreg->nomVille, $enreg->CPVille)),
                 $enreg->commentaire,
                 null,
                 );

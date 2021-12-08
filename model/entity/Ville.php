@@ -6,11 +6,12 @@ class Ville
     private string $nom;
     private string $codePostal;
 
-	public function __construct($id, $nom, $codePostal)
+	public function __construct($id=null, $departement=null, $nom, $codePostal)
 	{
 		$this->id = $id;
 		$this->nom = $nom;
 		$this->codePostal = $codePostal;
+		$this->departement = $departement;
 	}
 	public function getId()
 	{
