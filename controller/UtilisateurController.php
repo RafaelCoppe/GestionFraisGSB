@@ -97,4 +97,13 @@ class UtilisateurController extends Controller
         }
         $this->render("utilisateur/ajoutUtilisateur", array("title" => "Ajout d'un utilisateur", "msg" => $msg));
     }
+    public function selectDelegueDepPharma()
+    {
+        session_start();
+        $idUtilConnecte = $_SESSION['id'];
+        $unUtilisateurRepository = new UtilisateurRepository();
+        $lesDeleguesDepPharma = $unUtilisateurRepository->getLesDeleguesDepPharma();
+
+        $this->render("deplacementsPharmacies/consultDelegueList", array("title" => "Liste des deplacements en pharmacie", "lesDeleguesDepPharma" => $lesDeleguesDepPharma));
+    }
 }

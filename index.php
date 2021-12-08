@@ -99,12 +99,19 @@ if (isset($_GET['action'])) {
             $leControleur = new DeplacementsPharmacieController();
             $leControleur->ajoutDeplacementPharmacieTrait();
             break;
-        case "ConsultToutDepPharma":
+        case "ConsultDepPharma":
             // affichage des déplacements en pharmacie saisies par le délegué
             require(ROOT . "/controller/Controller.php");
             require(ROOT . "/controller/DeplacementsPharmacieController.php");
             $leControleur = new DeplacementsPharmacieController();
-            $leControleur->consultDeplacementsPharmacie();
+            $leControleur->consultDeplacementsPharmacieDelegue();
+            break;
+        case "ConsultListeDelegueDepPharma":
+            // affichage des déplacements en pharmacie saisies par le délegué
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/UtilisateurController.php");
+            $leControleur = new UtilisateurController();
+            $leControleur->selectDelegueDepPharma();
             break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 

@@ -57,4 +57,14 @@ class DeplacementsPharmacieController extends Controller
 
         $this->render("deplacementsPharmacies/consultDeplacementsPharmacie", array("title" => "Liste des demandes de remboursement", "lesDeplacements" => $lesDeplacements));
     }
+
+    public function consultDeplacementsPharmacieDelegue()
+    {
+        session_start();
+        $idDelegue = $_SESSION['id'];
+        $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
+
+        $this->render("deplacementsPharmacies/consultDeplacementsPharmacie", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
+    }
 };
