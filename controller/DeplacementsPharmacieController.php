@@ -67,4 +67,57 @@ class DeplacementsPharmacieController extends Controller
 
         $this->render("deplacementsPharmacies/consultDeplacementsPharmacie", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
     }
+    public function modifDeplacementsPharmacieListeForm()
+    {
+        session_start();
+        $idUtilConnecte = $_SESSION['id'];
+        $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacie($idUtilConnecte);
+
+        $this->render("deplacementsPharmacies/modifDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
+    }
+    public function modifDeplacementsPharmacieForm()
+    {
+        //
+        $typeFraisRepository = new TypeFraisRepository();
+        $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
+
+        //
+        $idDemande =  $_POST["listDemRemb"];
+
+        //
+        $unDemRemboursRepository = new DemandeRemboursementRepository();
+        $laDemandeAModifier = $unDemRemboursRepository->getUneDemandeRemboursement($idDemande);
+        //
+        $this->render("demandeRemboursement/modifDemande", array("title" => "Modification d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais, "laDemande" => $laDemandeAModifier));
+    }
+
+    public function modifDeplacementsPharmacieTrait()
+    {
+        //
+        $unDemRemboursRepository = new DemandeRemboursementRepository();
+        session_start();
+        $idUtilConnecte = $_SESSION['id'];
+        $laDemande = new DemandeRemboursement(
+            $_POST['idDemande'],
+            date('Y-m-d H:i:s'),
+            $_POST['montant'],
+            $_POST['commentaire'],
+            new TypeFrais($_POST['typeFrais'], null),
+            new Utilisateur($idUtilConnecte)
+        );
+        $uneDemandeRepository = new DemandeRemboursementRepository();
+        $ret = $uneDemandeRepository->modifDemandeRemboursement($laDemande);
+        if ($ret == false) {
+            $msg = "modification impossible";
+            $typeFraisRepository = new TypeFraisRepository();
+            $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
+            $this->render("demandeRemboursement/modifDemande", array("title" => "Modification d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais,  "laDemande" => $laDemande, "msg" => $msg));
+        } else {
+            $msg = "modification effectuée";
+            $unDemRemboursRepository = new DemandeRemboursementRepository();
+            $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
+            $this->render("demandeRemboursement/modifDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDemandes" => $lesDemandes, "msg" => $msg));
+        }
+    }
 };

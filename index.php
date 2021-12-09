@@ -113,6 +113,29 @@ if (isset($_GET['action'])) {
             $leControleur = new UtilisateurController();
             $leControleur->selectDelegueDepPharma();
             break;
+        case "modifDepPharmaListeForm":
+            // demande du formulaire permettant d'obtenir la liste des
+            // demande de remboursement en vue d'une modification
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->modifDeplacementsPharmacieListeForm();
+            break;
+        case "modifDepPharmaForm":
+            // demande du formulaire de modification d'une demande de remboursement
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->modifDeplacementsPharmacieForm();
+            break;
+        case "modifDepPharmaTrait":
+            // le formulaire de modification d'une demande de remboursement a été soumis.
+            // Vérification et enregistrement des informations saisies
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->modifDeplacementsPharmacieTrait();
+            break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
             // Vérification des informations saisies
