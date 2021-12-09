@@ -106,7 +106,7 @@ class UtilisateurController extends Controller
         $lesDeleguesDepPharma = $unUtilisateurRepository->getLesDeleguesDepPharma();
 
         $this->render("deplacementsPharmacies/consultDelegueList", array("title" => "Liste des deplacements en pharmacie", "lesDeleguesDepPharma" => $lesDeleguesDepPharma));
-
+    }
 
     public function consultDelegueList()
     {
