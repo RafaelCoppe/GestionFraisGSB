@@ -6,13 +6,13 @@ if (count($lesDeleguesDepPharma) == 0) {
     echo ("Aucun delegue n'a soumis de deplacement en pharmacie");
 } else {
 ?>
-<h1 class="text-center">Consultation des déplacements en pharmacie</h1>
 <form action="index.php?action=ConsultDepPharma" method='post'>
     <div class="row mb-3">
         <label for="delegue" class="col-lg-4 col-form-label">Choix du délégué</label>
         <div class="col-sm-12">
             <!-- liste déroulante -->
             <select class="form-select form-select-md" onChange="submit();" name="delegue">
+            <option value=""></option>
                 <?php foreach ($lesDeleguesDepPharma as $unDelegue) {
                     $id = $unDelegue->getId();
                     $lib = $unDelegue->GetNom() . " " . $unDelegue->GetPrenom();

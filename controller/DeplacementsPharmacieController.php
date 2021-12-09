@@ -61,9 +61,9 @@ class DeplacementsPharmacieController extends Controller
     public function consultDeplacementsPharmacieDelegue()
     {
         session_start();
-        $idDelegue = $_SESSION['id'];
+        $idDelegue = $_POST['delegue'];
         $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
-        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idDelegue);
 
         $this->render("deplacementsPharmacies/consultDeplacementsPharmacie", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
     }
