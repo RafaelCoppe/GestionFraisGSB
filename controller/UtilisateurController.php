@@ -97,6 +97,7 @@ class UtilisateurController extends Controller
         }
         $this->render("utilisateur/ajoutUtilisateur", array("title" => "Ajout d'un utilisateur", "msg" => $msg));
     }
+
     public function selectDelegueDepPharma()
     {
         session_start();
@@ -105,5 +106,14 @@ class UtilisateurController extends Controller
         $lesDeleguesDepPharma = $unUtilisateurRepository->getLesDeleguesDepPharma();
 
         $this->render("deplacementsPharmacies/consultDelegueList", array("title" => "Liste des deplacements en pharmacie", "lesDeleguesDepPharma" => $lesDeleguesDepPharma));
+
+
+    public function consultDelegueList()
+    {
+        $utilisateurRepository = new UtilisateurRepository();
+        $lesDelegues = $utilisateurRepository->getDelegueList();
+
+        $this->render("VisiteMedecin/consultDelegueList", array("title" => "Liste des demandes de remboursement", "lesDelegues" => $lesDelegues));
+
     }
 }

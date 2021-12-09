@@ -104,17 +104,37 @@ class UtilisateurRepository extends Repository
         }
         return $ret;
     }
+
     public function getLesDeleguesDepPharma()
     {
         $lesDelegues = array();
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT DISTINCT utilisateur.id, utilisateur.nom, utilisateur.prenom FROM utilisateur
         JOIN deplacement_pharmacie ON deplacement_pharmacie.id_delegue = utilisateur.id");
+
+
+    public function getDelegueList()
+    {
+        $lesDelegues = array();
+        $db = $this->dbConnect();
+        $req = $db->prepare("select id, nom, prenom
+                    from utilisateur 
+                    where id_profil = 1");
+
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
         foreach ($lesEnregs  as $enreg) {
+
             $unDelegue = new Utilisateur($enreg->id, $enreg->nom, $enreg->prenom);
+
+            $unDelegue = new Utilisateur(
+                $enreg->id,
+                $enreg->nom,
+                $enreg->prenom,
+                null
+            );
+
             array_push($lesDelegues, $unDelegue);
         }
         return $lesDelegues;
