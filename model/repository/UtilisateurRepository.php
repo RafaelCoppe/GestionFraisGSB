@@ -111,7 +111,7 @@ class UtilisateurRepository extends Repository
         $db = $this->dbConnect();
         $req = $db->prepare("SELECT DISTINCT utilisateur.id, utilisateur.nom, utilisateur.prenom FROM utilisateur
         JOIN deplacement_pharmacie ON deplacement_pharmacie.id_delegue = utilisateur.id");
-
+    }
 
     public function getDelegueList()
     {
