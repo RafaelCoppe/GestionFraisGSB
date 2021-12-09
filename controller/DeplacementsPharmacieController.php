@@ -26,7 +26,7 @@ class DeplacementsPharmacieController extends Controller
         $idUtilConnecte = $_SESSION['id'];
         $leDeplacement = new DeplacementPharmacie(
             null,
-            date('Y-m-d H:i:s'),
+            $_POST['date'] . " " . $_POST['time'],
             new Pharmacie($_POST['pharmacie']),
             $_POST['commentaire'],
             new Utilisateur($idUtilConnecte)

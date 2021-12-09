@@ -18,6 +18,20 @@
     </div>
     
     <div class="row mb-3">
+        <label for="date" class="col-lg-4 col-form-label">Date</label>
+        <div class="col-sm-12">
+            <input type="date" class="form-control" name="date" id="date">
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <label for="time" class="col-lg-4 col-form-label">Heure</label>
+        <div class="col-sm-12">
+            <input type="time" class="form-control" name="time" id="time">
+        </div>
+    </div>
+
+    <div class="row mb-3">
         <label for="comment" class="col-lg-4 col-form-label">Commentaire</label>
         <div class="col-sm-12">
             <input type="text" class="form-control" name="commentaire" id="comment">
