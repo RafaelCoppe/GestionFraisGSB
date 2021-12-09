@@ -3,7 +3,7 @@
 <div class="row mb-3">
         <label for="nom" class="col-lg-4 col-form-label">Nom</label>
         <div class="col-sm-12">
-            <input type="text" class="form-control" name="nom"  id="nom">
+            <input type="text" class="form-control" name="montant"  id="nom">
         </div>
     </div>
     <div class="row mb-3">
