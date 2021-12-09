@@ -23,4 +23,22 @@ class MedecinRepository extends Repository
         }
         return $lesMedecins;
     }
+
+    public function ajoutMedecin(Medecin $medACreer)
+    {
+        $db = $this->dbConnect();
+        try {
+            // on prépare la requête select
+            $req = $db->prepare("insert into medecin
+            values (0,:par_nom,:par_prenom)");
+            
+            $req->bindValue(':par_nom', $medACreer->getNom(), PDO::PARAM_STR);
+            $req->bindValue(':par_prenom', $medACreer->getPrenom(), PDO::PARAM_STR);
+            // on demande l'exécution de la requête 
+            $ret = $req->execute();
+        } catch (PDOException $e) {
+            $ret = false;
+        }
+        return $ret;
+    }
 }
