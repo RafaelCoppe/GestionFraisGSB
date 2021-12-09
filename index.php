@@ -35,14 +35,41 @@ if (isset($_GET['action'])) {
             $leControleur = new DemandeRemboursementController();
             $leControleur->ajoutDemandeRemboursementForm();
             break;
-        case "ajoutDemRembTrait":
-            // le formulaire d'ajout d'une demande de remboursement a été soumis.
-            // Vérification et enregistrement des informations saisies
-            require(ROOT . "/controller/Controller.php");
-            require(ROOT . "/controller/DemandeRemboursementController.php");
-            $leControleur = new DemandeRemboursementController();
-            $leControleur->ajoutDemandeRemboursementTrait();
-            break;
+            case "ajoutDemRembTrait":
+                // le formulaire d'ajout d'une demande de remboursement a été soumis.
+                // Vérification et enregistrement des informations saisies
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/DemandeRemboursementController.php");
+                $leControleur = new DemandeRemboursementController();
+                $leControleur->ajoutDemandeRemboursementTrait();
+                break;
+            case "ajoutVisiteMedecinTrait":
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/VisiteMedecinController.php");
+                $leControleur = new VisiteMedecinController();
+                $leControleur->ajoutVisiteMedecinTrait();
+                break;
+            case "ajoutVisiteMedecinForm":
+                
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/VisiteMedecinController.php");
+                $leControleur = new VisiteMedecinController();
+                $leControleur->ajoutVisiteMedecinForm();
+                break;
+
+            case "ajoutMedecinTrait":
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/MedecinController.php");
+                $leControleur = new MedecinController();
+                $leControleur->ajoutMedecinTrait();
+                break;
+            case "ajoutMedecinForm":
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/MedecinController.php");
+                $leControleur = new MedecinController();
+                $leControleur->ajoutMedecinForm();
+                break;
+
         case "modifDemRembListeForm":
             // demande du formulaire permettant d'obtenir la liste des
             // demande de remboursement en vue d'une modification
@@ -72,6 +99,18 @@ if (isset($_GET['action'])) {
             require(ROOT . "/controller/DemandeRemboursementController.php");
             $leControleur = new DemandeRemboursementController();
             $leControleur->consultMesDemandeRemboursement();
+            break;
+        case "consultDelegueList":
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/UtilisateurController.php");
+            $leControleur = new UtilisateurController();
+            $leControleur->consultDelegueList();
+            break;
+        case "consultVisiteMedecin":
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/VisiteMedecinController.php");
+            $leControleur = new VisiteMedecinController();
+            $leControleur->consultVisiteMedecin();
             break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
