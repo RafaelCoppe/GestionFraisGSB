@@ -50,22 +50,26 @@ if (isset($_GET['action'])) {
                 $leControleur->ajoutVisiteMedecinTrait();
                 break;
             case "ajoutVisiteMedecinForm":
-                session_start();
-                //if (session_status() == 1) {
-                    $idDelegue = $_SESSION['id'];
-                //}
-                if (isset($idDelegue) == false || $idDelegue == 0) {
-                    require(ROOT . "/controller/Controller.php");
-                    require(ROOT . "/controller/UtilisateurController.php");
-                    $leControleur = new UtilisateurController();
-                    $leControleur->connexionForm();
-                    break;
-                }
+                
                 require(ROOT . "/controller/Controller.php");
                 require(ROOT . "/controller/VisiteMedecinController.php");
                 $leControleur = new VisiteMedecinController();
                 $leControleur->ajoutVisiteMedecinForm();
                 break;
+
+            case "ajoutMedecinTrait":
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/MedecinController.php");
+                $leControleur = new MedecinController();
+                $leControleur->ajoutMedecinTrait();
+                break;
+            case "ajoutMedecinForm":
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/MedecinController.php");
+                $leControleur = new MedecinController();
+                $leControleur->ajoutMedecinForm();
+                break;
+
         case "modifDemRembListeForm":
             // demande du formulaire permettant d'obtenir la liste des
             // demande de remboursement en vue d'une modification
