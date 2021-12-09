@@ -72,52 +72,63 @@ class DeplacementsPharmacieController extends Controller
         session_start();
         $idUtilConnecte = $_SESSION['id'];
         $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
-        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacie($idUtilConnecte);
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
 
         $this->render("deplacementsPharmacies/modifDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
     }
     public function modifDeplacementsPharmacieForm()
     {
-        //
-        $typeFraisRepository = new TypeFraisRepository();
-        $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
+        session_start();
+        $PharmacieRepository = new PharmacieRepository();
+        $lesPharmacies = $PharmacieRepository->getLesPharmacies();
 
         //
-        $idDemande =  $_POST["listDemRemb"];
+        $idDeplacement =  $_POST["deplacement"];
+        $idDelegue = $_SESSION['id'];
 
         //
-        $unDemRemboursRepository = new DemandeRemboursementRepository();
-        $laDemandeAModifier = $unDemRemboursRepository->getUneDemandeRemboursement($idDemande);
+        $unDepPharmacieRepository = new DeplacementPharmacieRepository();
+        $laDepPharmacieAModifier = $unDepPharmacieRepository->getUnDeplacementPharmacie($idDeplacement, $idDelegue);
         //
-        $this->render("demandeRemboursement/modifDemande", array("title" => "Modification d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais, "laDemande" => $laDemandeAModifier));
+        $this->render("deplacementsPharmacies/modifDeplacement", array("title" => "Modification d'un deplacement en pharmacie", "lesPharmacies" => $lesPharmacies, "laDepPharmacie" => $laDepPharmacieAModifier));
     }
 
     public function modifDeplacementsPharmacieTrait()
     {
         //
-        $unDemRemboursRepository = new DemandeRemboursementRepository();
         session_start();
         $idUtilConnecte = $_SESSION['id'];
-        $laDemande = new DemandeRemboursement(
-            $_POST['idDemande'],
-            date('Y-m-d H:i:s'),
-            $_POST['montant'],
+        $leDeplacement = new DeplacementPharmacie(
+            $_SESSION['idDepPharma'],
+            $_POST['date'] . " " . $_POST['time'],
+            new Pharmacie($_POST['pharmacie']),
             $_POST['commentaire'],
-            new TypeFrais($_POST['typeFrais'], null),
             new Utilisateur($idUtilConnecte)
         );
-        $uneDemandeRepository = new DemandeRemboursementRepository();
-        $ret = $uneDemandeRepository->modifDemandeRemboursement($laDemande);
+        $unDeplacementRepository = new DeplacementPharmacieRepository();
+        $ret = $unDeplacementRepository->modifDeplacementPharmacie($leDeplacement);
+
         if ($ret == false) {
             $msg = "modification impossible";
-            $typeFraisRepository = new TypeFraisRepository();
-            $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
-            $this->render("demandeRemboursement/modifDemande", array("title" => "Modification d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais,  "laDemande" => $laDemande, "msg" => $msg));
+            $PharmacieRepository = new PharmacieRepository();
+            $lesPharmacies = $PharmacieRepository->getLesPharmacies();
+
+            //
+            $idDeplacement =  $_POST["deplacement"];
+            $idDelegue = $_SESSION['id'];
+
+            //
+            $unDepPharmacieRepository = new DeplacementPharmacieRepository();
+            $laDepPharmacieAModifier = $unDepPharmacieRepository->getUnDeplacementPharmacie($idDeplacement, $idDelegue);
+            //
+            $this->render("deplacementsPharmacies/modifDeplacement", array("title" => "Modification d'un deplacement en pharmacie", "lesPharmacies" => $lesPharmacies, "laDepPharmacie" => $laDepPharmacieAModifier, "msg" => $msg));
         } else {
             $msg = "modification effectuée";
-            $unDemRemboursRepository = new DemandeRemboursementRepository();
-            $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
-            $this->render("demandeRemboursement/modifDemandeListe", array("title" => "Liste des demandes de remboursement", "lesDemandes" => $lesDemandes, "msg" => $msg));
+            $idUtilConnecte = $_SESSION['id'];
+            $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+            $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacie($idUtilConnecte);
+
+            $this->render("deplacementsPharmacies/modifDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements, "msg" => $msg));
         }
     }
 };
