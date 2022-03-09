@@ -23,7 +23,11 @@ class DemandeRemboursementRepository extends Repository
         } catch (PDOException $e) {
             $ret = false;
         }
-        return $ret;
+        if ($ret != False){
+            $insertedId = $db->lastInsertId();
+            return [$ret, $insertedId];
+        }
+        return [$ret];
     }
     public function modifDemandeRemboursement(DemandeRemboursement $demAModifier)
     {
