@@ -1,14 +1,15 @@
-<?php 
-class Medecin {
-    private ?int $id;
-    private ?string $nom;
+<?php
+class Medecin
+{
+	private ?int $id;
+	private ?string $nom;
     private ?string $prenom;
 
-    public function __construct($id, $nom = null, $prenom = null)
+	public function __construct($id, $nom, $prenom)
 	{
 		$this->id = $id;
-		$this->nom = $nom;
-		$this->prenom = $prenom;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
 	}
 	public function getId()
 	{
@@ -18,15 +19,15 @@ class Medecin {
 	{
 		$this->id = $id;
 	}
-    public function getNom()
+	public function getNom()
 	{
 		return $this->nom;
 	}
 	public function setNom($nom)
 	{
 		$this->nom = $nom;
-	}
-	public function getPrenom()
+    }
+    public function getPrenom()
 	{
 		return $this->prenom;
 	}
@@ -35,4 +36,3 @@ class Medecin {
 		$this->prenom = $prenom;
 	}
 }
-?>
