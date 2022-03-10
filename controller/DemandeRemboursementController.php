@@ -41,24 +41,7 @@ class DemandeRemboursementController extends Controller
             $_POST = array();
             $msg = "<p class='text-success'>Votre demande a été enregistrée</p>";
             
-            $unActionRepository = new ActionRepository();
-            $leIdAction = $unActionRepository->getIdByLibelle(new Action(null, "ajout"));
-
-            $unTableRepository = new TableRepository();
-            $leIdTable = $unTableRepository->getIdByNom(new Table(null, "demande_remboursement"));
-
-            $leLogEvenement = new LogEvenement(
-                null,
-                $_SERVER['REMOTE_ADDR'],
-                date('Y-m-d H:i:s'),
-                $ret[1],
-                new Utilisateur($idUtilConnecte),
-                new Action($leIdAction, "ajout"),
-                new Table($leIdTable, "demande_rembousement")
-            );
-
-            $unLogEvenementRepository = new logEvenementRepository();
-            $leResult = $unLogEvenementRepository->insertLog($leLogEvenement);
+            $this->insertInLogs(["ajout", "demande_remboursement", $ret[1], $idUtilConnecte]);
         }
         //
         $typeFraisRepository = new TypeFraisRepository();
