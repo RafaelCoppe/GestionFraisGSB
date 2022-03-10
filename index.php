@@ -148,6 +148,7 @@ if (isset($_GET['action'])) {
             $leControleur = new DemandeRemboursementController();
             $leControleur->consultMesDemandeRemboursement();
             break;
+
         case "consultVisite":
             // affichage des visites pour le délegué choisis
             require(ROOT . "/controller/Controller.php");
@@ -155,12 +156,77 @@ if (isset($_GET['action'])) {
             $leControleur = new VisiteController();
             $leControleur->consultLesVisites();
             break;
+
+        case "ajoutDepPharmaForm":
+            session_start();
+            //if (session_status() == 3) {
+            $idDelegue = $_SESSION['id'];
+            //}
+            if (isset($idDelegue) == false || $idDelegue == 0) {
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/UtilisateurController.php");
+                $leControleur = new UtilisateurController();
+                $leControleur->connexionForm();
+                break;
+            }
+            // demande du formulaire d'ajout d'un deplacement en pharmacie
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->ajoutDeplacementPharmacieForm();
+            break;
+        case "ajoutDepPharmaTrait":
+            // le formulaire d'ajout d'un déplacement chez le pharmacien a été soumis.
+            // Vérification et enregistrement des informations saisies
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->ajoutDeplacementPharmacieTrait();
+            break;
+        case "ConsultDepPharma":
+            // affichage des déplacements en pharmacie saisies par le délegué
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->consultDeplacementsPharmacieDelegue();
+            break;
+        case "ConsultListeDelegueDepPharma":
+            // affichage des déplacements en pharmacie saisies par le délegué
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/UtilisateurController.php");
+            $leControleur = new UtilisateurController();
+            $leControleur->selectDelegueDepPharma();
+            break;
+        case "modifDepPharmaListeForm":
+            // demande du formulaire permettant d'obtenir la liste des
+            // demande de remboursement en vue d'une modification
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->modifDeplacementsPharmacieListeForm();
+            break;
+        case "modifDepPharmaForm":
+            // demande du formulaire de modification d'une demande de remboursement
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->modifDeplacementsPharmacieForm();
+            break;
+        case "modifDepPharmaTrait":
+            // le formulaire de modification d'une demande de remboursement a été soumis.
+            // Vérification et enregistrement des informations saisies
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/DeplacementsPharmacieController.php");
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->modifDeplacementsPharmacieTrait();
+
         case "consultDelegueListe":
-            // affichage des visites pour le délegué choisis
             require(ROOT . "/controller/Controller.php");
             require(ROOT . "/controller/UtilisateurController.php");
             $leControleur = new UtilisateurController();
             $leControleur->consultDelegueList();
+            break;
+
             break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
