@@ -1,4 +1,9 @@
 <?php 
+
+namespace App\model\entity;
+
+use App\model\entity\{Medecin, Utilisateur};
+
 class VisiteMedecin {
     private ?int $id;
     private ?string $dateSaisie;

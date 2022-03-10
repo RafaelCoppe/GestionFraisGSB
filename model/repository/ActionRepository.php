@@ -3,8 +3,8 @@
 namespace App\model\repository;
 
 use App\model\repository\Repository;
-//class dont on a besoin (classe Repository.php obligatoire)
-require_once("Repository.php");
+use App\model\entity\Action;
+use PDO, PDOException;
 
 class ActionRepository extends Repository
 {

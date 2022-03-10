@@ -1,4 +1,9 @@
 <?php
+
+namespace App\model\entity;
+
+use App\model\entity\{Profil, Fonctionnalite};
+
 class ProfilFonct
 {
 
