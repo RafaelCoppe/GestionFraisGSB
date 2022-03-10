@@ -1,7 +1,10 @@
 <?php
-//class dont on a besoin (classe Repository.php obligatoire)
-require_once(ROOT . "/model/repository/Repository.php");
-require_once(ROOT . "/model/entity/Medecin.php");
+
+namespace App\model\repository;
+
+use App\model\repository\Repository;
+use App\model\entity\{Medecin};
+use PDO, PDOException;
 
 class MedecinRepository extends Repository
 {

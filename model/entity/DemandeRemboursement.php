@@ -1,4 +1,10 @@
 <?php
+
+namespace App\model\entity;
+
+use App\model\entity\TypeFrais;
+use App\model\entity\Utilisateur;
+
 class DemandeRemboursement
 {
 	private ?int $id;

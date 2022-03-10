@@ -1,4 +1,9 @@
 <?php
+
+namespace App\model\entity;
+
+use App\model\entity\{Pharmacie, Utilisateur};
+
 class DeplacementPharmacie
 {
 	private ?int $id;

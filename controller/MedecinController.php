@@ -1,12 +1,22 @@
 <?php
 
+namespace App\controller;
+
+use App\controller\controller;
+
+use App\model\repository\{MedecinRepository};
+use App\model\entity\{Medecin};
+
 class MedecinController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
+<<<<<<< HEAD
+=======
         require_once(ROOT . '/model/repository/MedecinRepository.php');
         require_once(ROOT . '/model/entity/Medecin.php');
+>>>>>>> 6f7b701c891cbf5f0c349f3d2a4554bf324ea47d
     }
     public function ajoutMedecinForm()
     {

@@ -1,15 +1,16 @@
 <?php
 
+namespace App\controller;
+
+use App\controller\controller;
+use App\model\repository\{DemandeRemboursementRepository, TypeFraisRepository, ActionRepository, TableRepository, LogEvenementRepository};
+use App\model\entity\{TypeFrais, Utilisateur, LogEvenement, DemandeRemboursement, Action, Table};
+
 class DemandeRemboursementController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        require_once(ROOT . '/model/repository/DemandeRemboursementRepository.php');
-        require_once(ROOT . '/model/repository/TypeFraisRepository.php');
-        require_once(ROOT . '/model/entity/DemandeRemboursement.php');
-        require_once(ROOT . '/model/entity/Utilisateur.php');
-        require_once(ROOT . '/model/entity/TypeFrais.php');
     }
     public function ajoutDemandeRemboursementForm()
     {
@@ -34,11 +35,14 @@ class DemandeRemboursementController extends Controller
         $ret = $uneDemandeRepository->ajoutDemandeRemboursement($laDemande);
 
         //
-        if ($ret == false) {
+        if ($ret[0] == false) {
             $msg = "<p class='text-danger'>ERREUR : votre demande n'a pas été enregistrée</p>";
         } else {
             $_POST = array();
             $msg = "<p class='text-success'>Votre demande a été enregistrée</p>";
+            
+            $this->insertInLogs(["ajout", "demande_remboursement", $ret[1], $idUtilConnecte]);
+
         }
         //
         $typeFraisRepository = new TypeFraisRepository();
@@ -93,6 +97,25 @@ class DemandeRemboursementController extends Controller
             $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
             $this->render("demandeRemboursement/modifDemande", array("title" => "Modification d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais,  "laDemande" => $laDemande, "msg" => $msg));
         } else {
+            $unActionRepository = new ActionRepository();
+            $leIdAction = $unActionRepository->getIdByLibelle(new Action(null, "modification"));
+
+            $unTableRepository = new TableRepository();
+            $leIdTable = $unTableRepository->getIdByNom(new Table(null, "demande_remboursement"));
+
+            $leLogEvenement = new LogEvenement(
+                null,
+                $_SERVER['REMOTE_ADDR'],
+                date('Y-m-d H:i:s'),
+                $_POST['idDemande'],
+                new Utilisateur($idUtilConnecte),
+                new Action($leIdAction, "modification"),
+                new Table($leIdTable, "demande_rembousement")
+            );
+
+            $unLogEvenementRepository = new logEvenementRepository();
+            $leResult = $unLogEvenementRepository->insertLog($leLogEvenement);
+
             $msg = "modification effectuée";
             $unDemRemboursRepository = new DemandeRemboursementRepository();
             $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);

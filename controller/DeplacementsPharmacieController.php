@@ -1,17 +1,16 @@
 <?php
 
+namespace App\controller;
+
+use App\controller\controller;
+use App\model\repository\{PharmacieRepository, DeplacementPharmacieRepository};
+use App\model\entity\{DeplacementPharmacie, Pharmacie, Utilisateur};
+
 class DeplacementsPharmacieController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        require_once(ROOT . '/model/repository/DeplacementPharmacieRepository.php');
-        require_once(ROOT . '/model/repository/PharmacieRepository.php');
-        require_once(ROOT . '/model/entity/DeplacementPharmacie.php');
-        require_once(ROOT . '/model/entity/Pharmacie.php');
-        require_once(ROOT . '/model/entity/Ville.php');
-        require_once(ROOT . '/model/entity/Produit.php');
-        require_once(ROOT . '/model/entity/Utilisateur.php');
     }
     public function ajoutDeplacementPharmacieForm()
     {

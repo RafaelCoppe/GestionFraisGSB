@@ -1,6 +1,10 @@
 <?php
-//class dont on a besoin (classe Repository.php obligatoire)
-require_once("Repository.php");
+
+namespace App\model\repository;
+
+use App\model\repository\Repository;
+use App\model\entity\{Pharmacie, Ville};
+use PDO, PDOException;
 
 class PharmacieRepository extends Repository
 {
