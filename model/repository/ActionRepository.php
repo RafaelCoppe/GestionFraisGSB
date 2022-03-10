@@ -1,4 +1,8 @@
 <?php
+
+namespace App\model\repository;
+
+use App\model\repository\Repository;
 //class dont on a besoin (classe Repository.php obligatoire)
 require_once("Repository.php");
 

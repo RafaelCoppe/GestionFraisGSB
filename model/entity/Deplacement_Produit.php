@@ -1,4 +1,9 @@
 <?php
+
+namespace App\model\entity;
+
+use App\model\entity\{DeplacementPhamacie, Produit};
+
 class Deplacement_Produit
 {
 	private DeplacementPharmacie $leDeplacement;

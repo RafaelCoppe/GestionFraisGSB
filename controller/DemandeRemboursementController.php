@@ -1,5 +1,11 @@
 <?php
 
+namespace App\controller;
+
+use App\controller\controller;
+use App\model\repository\{DemandeRemboursementRepository, TypeFraisRepository, ActionRepository, TableRepository, LogEvenementRepository};
+use App\model\entity\{TypeFrais, Utilisateur, LogEvenement};
+
 class DemandeRemboursementController extends Controller
 {
     public function __construct()

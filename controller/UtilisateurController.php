@@ -1,5 +1,9 @@
 <?php
 
+namespace App\controller;
+
+use App\controller\controller;
+
 class UtilisateurController extends Controller
 {
     public function __construct()

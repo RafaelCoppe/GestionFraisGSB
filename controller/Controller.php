@@ -1,4 +1,6 @@
 <?php
+
+namespace App\controller;
 abstract class Controller
 {
 	protected function __construct()

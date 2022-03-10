@@ -1,4 +1,7 @@
 <?php
+
+namespace App\model\entity;
+
 class Action
 {
 	private ?int $id;

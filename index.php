@@ -1,8 +1,11 @@
 <?php
-use App\Autoloader;
-use App\controller\{DemandeRemboursementController, DeplacementsPharmacieController, logEvenementsController, MedecinController, UtilisateurController, VisiteMedecinController};
 
-require_once "./Autoloader.php";
+namespace App;
+
+use App\Autoloader;
+use App\controller\{DemandeRemboursementController, DeplacementsPharmacieController, MedecinController, UtilisateurController, VisiteMedecinController};
+
+require_once "./autoloader.php";
 Autoloader::register();
 
 define('ROOT', $_SERVER['DOCUMENT_ROOT']);

@@ -1,5 +1,9 @@
 <?php
 
+namespace App\controller;
+
+use App\controller\controller;
+
 class VisiteMedecinController extends Controller
 {
     public function __construct()
