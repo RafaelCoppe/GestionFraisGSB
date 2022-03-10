@@ -12,8 +12,6 @@ class UtilisateurController extends Controller
     public function __construct()
     {
         parent::__construct();
-        require_once(ROOT . '/model/repository/UtilisateurRepository.php');
-        require_once(ROOT . '/model/entity/Utilisateur.php');
     }
     public function connexionTrait()
     {
