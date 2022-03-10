@@ -1,7 +1,7 @@
 <?php 
 namespace App;
 
-class AUtoloader
+class Autoloader
 {
     public static function register()
     {
