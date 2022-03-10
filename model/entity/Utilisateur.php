@@ -1,5 +1,4 @@
-﻿<?php
-
+<?php
 namespace App\model\entity;
 
 class Utilisateur

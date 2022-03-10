@@ -1,5 +1,4 @@
 <?php
-
 namespace App\model\repository;
 
 use App\model\repository\Repository;
