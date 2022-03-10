@@ -4,6 +4,9 @@ namespace App\controller;
 
 use App\controller\controller;
 
+use App\model\repository\{MedecinRepository, VisiteMedecinRepository};
+use App\model\entity\{Utilisateur, Medecin, VisiteMedecin};
+
 class VisiteMedecinController extends Controller
 {
     public function __construct()

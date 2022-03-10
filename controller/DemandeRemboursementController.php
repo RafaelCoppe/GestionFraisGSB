@@ -4,24 +4,13 @@ namespace App\controller;
 
 use App\controller\controller;
 use App\model\repository\{DemandeRemboursementRepository, TypeFraisRepository, ActionRepository, TableRepository, LogEvenementRepository};
-use App\model\entity\{TypeFrais, Utilisateur, LogEvenement};
+use App\model\entity\{TypeFrais, Utilisateur, LogEvenement, DemandeRemboursement, Action, Table};
 
 class DemandeRemboursementController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        require_once(ROOT . '/model/repository/DemandeRemboursementRepository.php');
-        require_once(ROOT . '/model/repository/TypeFraisRepository.php');
-        require_once(ROOT . '/model/repository/LogEvenementRepository.php');
-        require_once(ROOT . '/model/repository/ActionRepository.php');
-        require_once(ROOT . '/model/repository/TableRepository.php');
-        require_once(ROOT . '/model/entity/DemandeRemboursement.php');
-        require_once(ROOT . '/model/entity/Utilisateur.php');
-        require_once(ROOT . '/model/entity/TypeFrais.php');
-        require_once(ROOT . '/model/entity/LogEvenement.php');
-        require_once(ROOT . '/model/entity/Action.php');
-        require_once(ROOT . '/model/entity/Table.php');
     }
     public function ajoutDemandeRemboursementForm()
     {

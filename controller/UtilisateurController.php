@@ -4,6 +4,9 @@ namespace App\controller;
 
 use App\controller\controller;
 
+use App\model\repository\{UtilisateurRepository};
+use App\model\entity\{Utilisateur, Profil};
+
 class UtilisateurController extends Controller
 {
     public function __construct()

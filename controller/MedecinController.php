@@ -4,14 +4,14 @@ namespace App\controller;
 
 use App\controller\controller;
 
+use App\model\repository\{MedecinRepository};
+use App\model\entity\{Medecin};
+
 class MedecinController extends Controller
 {
     public function __construct()
     {
         parent::__construct();
-        require_once(ROOT . '/model/repository/MedecinRepository.php');
-        require_once(ROOT . '/model/entity/Medecin.php');
-        require_once(ROOT . '/model/entity/Utilisateur.php');
     }
     public function ajoutMedecinForm()
     {
