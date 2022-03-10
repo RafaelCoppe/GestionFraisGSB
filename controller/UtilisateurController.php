@@ -113,7 +113,7 @@ class UtilisateurController extends Controller
         $utilisateurRepository = new UtilisateurRepository();
         $lesDelegues = $utilisateurRepository->getDelegueList();
 
-        $this->render("VisiteMedecin/consultDelegueList", array("title" => "Liste des demandes de remboursement", "lesDelegues" => $lesDelegues));
+        $this->render("visite/consultDelegueListe", array("title" => "Liste des demandes de remboursement", "lesDelegues" => $lesDelegues));
 
     }
 }

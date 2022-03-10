@@ -116,7 +116,7 @@ class VisiteRepository extends Repository
                         from visite 
                         join medecin on medecin.id = id_medecin
                         join utilisateur on utilisateur.id = id_delegue
-                        where utilisateur.id =" . $idDelegue);
+                        where utilisateur.id = '" . $idDelegue . "'");
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
