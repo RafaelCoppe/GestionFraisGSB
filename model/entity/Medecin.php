@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php 
 
 namespace App\model\entity;
@@ -5,13 +6,20 @@ namespace App\model\entity;
 class Medecin {
     private ?int $id;
     private ?string $nom;
+=======
+<?php
+class Medecin
+{
+	private ?int $id;
+	private ?string $nom;
+>>>>>>> 6f7b701c891cbf5f0c349f3d2a4554bf324ea47d
     private ?string $prenom;
 
-    public function __construct($id, $nom = null, $prenom = null)
+	public function __construct($id, $nom, $prenom)
 	{
 		$this->id = $id;
-		$this->nom = $nom;
-		$this->prenom = $prenom;
+        $this->nom = $nom;
+        $this->prenom = $prenom;
 	}
 	public function getId()
 	{
@@ -21,15 +29,15 @@ class Medecin {
 	{
 		$this->id = $id;
 	}
-    public function getNom()
+	public function getNom()
 	{
 		return $this->nom;
 	}
 	public function setNom($nom)
 	{
 		$this->nom = $nom;
-	}
-	public function getPrenom()
+    }
+    public function getPrenom()
 	{
 		return $this->prenom;
 	}
@@ -38,4 +46,3 @@ class Medecin {
 		$this->prenom = $prenom;
 	}
 }
-?>

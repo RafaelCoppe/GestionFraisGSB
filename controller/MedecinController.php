@@ -12,31 +12,39 @@ class MedecinController extends Controller
     public function __construct()
     {
         parent::__construct();
+<<<<<<< HEAD
+=======
+        require_once(ROOT . '/model/repository/MedecinRepository.php');
+        require_once(ROOT . '/model/entity/Medecin.php');
+>>>>>>> 6f7b701c891cbf5f0c349f3d2a4554bf324ea47d
     }
     public function ajoutMedecinForm()
     {
-        $this->render("Medecin/ajoutMedecin", array("title" => "Ajout d'un médecin"));
+        $medecinRepository = new MedecinRepository();
+        $lesMedecins = $medecinRepository->getLesMedecins();
+
+        $this->render("medecin/ajoutMedecin", array("title" => "Ajout d'un médecin", "lesMedecins" => $lesMedecins));
     }
     public function ajoutMedecinTrait()
-    { 
+    {
         session_start();
-        $unMedecin = new Medecin(
+        $leMedecin = new Medecin(
             null,
-            $_POST['nom'],
             $_POST['prenom'],
+            $_POST['nom']
         );
         $unMedecinRepository = new MedecinRepository();
-        $ret = $unMedecinRepository->ajoutMedecin($unMedecin);
+        $ret = $unMedecinRepository->ajoutMedecin($leMedecin);
 
         //
         if ($ret == false) {
-            $msg = "<p class='text-danger'>ERREUR : le médecin n'a pas été enregistrée</p>";
+            $msg = "<p class='text-danger'>ERREUR : votre médecin n'a pas été enregistré</p>";
         } else {
-            $msg = "<p class='text-success'>Le médecin a été enregistrée</p>";
+            $_POST = array();
+            $msg = "<p class='text-success'>Votre médecin a été enregistré</p>";
         }
-
-        //
-        $unMedecinRepository = new MedecinRepository();
-        $this->render("Medecin/ajoutMedecin", array("title" => "Ajout d'un médecin","msg" => $msg));
+        $medecinRepository = new MedecinRepository();
+        $lesMedecins = $medecinRepository->getLesMedecins();
+        $this->render("medecin/ajoutMedecin", array("title" => "Ajout d'un médecin", "lesMedecins" => $lesMedecins, "msg" => $msg));
     }
 }
