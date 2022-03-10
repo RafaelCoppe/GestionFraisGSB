@@ -158,9 +158,9 @@ if (isset($_GET['action'])) {
         case "consultDelegueListe":
             // affichage des visites pour le délegué choisis
             require(ROOT . "/controller/Controller.php");
-            require(ROOT . "/controller/UtilisateurController.php");
+            require(ROOT . "/controller/UtiisateurController.php");
             $leControleur = new UtilisateurController();
-            $leControleur->consultLesDeleguesListe();
+            $leControleur->consultDelegueList();
             break;
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
