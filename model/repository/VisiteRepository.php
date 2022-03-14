@@ -1,7 +1,12 @@
 <?php
+
+namespace App\model\repository;
+
+use App\model\repository\Repository;
+use App\model\entity\{Visite, Medecin};
+use PDO, PDOException;
+
 date_default_timezone_set('Europe/Paris');
-//class dont on a besoin (classe Repository.php obligatoire)
-require_once("Repository.php");
 
 class VisiteRepository extends Repository
 {
