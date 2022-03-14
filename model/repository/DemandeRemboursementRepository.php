@@ -1,6 +1,10 @@
 <?php
-//class dont on a besoin (classe Repository.php obligatoire)
-require_once("Repository.php");
+
+namespace App\model\repository;
+
+use App\model\repository\Repository;
+use App\model\entity\{DemandeRemboursement, TypeFrais};
+use PDO, PDOException;
 
 class DemandeRemboursementRepository extends Repository
 {
@@ -23,7 +27,11 @@ class DemandeRemboursementRepository extends Repository
         } catch (PDOException $e) {
             $ret = false;
         }
-        return $ret;
+        if ($ret != False){
+            $insertedId = $db->lastInsertId();
+            return [$ret, $insertedId];
+        }
+        return [$ret];
     }
     public function modifDemandeRemboursement(DemandeRemboursement $demAModifier)
     {

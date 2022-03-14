@@ -1,4 +1,8 @@
 <?php
+
+namespace App\model\entity;
+
+use App\model\entity\Ville;
 class Pharmacie
 {
 	private ?int $id;

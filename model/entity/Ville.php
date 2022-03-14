@@ -1,4 +1,7 @@
 <?php
+
+namespace App\model\entity;
+
 class Ville
 {
 	private ?int $id;

@@ -1,4 +1,7 @@
 <?php
+
+namespace App\model\entity;
+
 class Produit_type
 {
 	private ?int $id;

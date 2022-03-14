@@ -2,12 +2,12 @@
 
 namespace App\model\entity;
 
-class Profil
+class Action
 {
-	private int $id;
+	private ?int $id;
 	private ?string $libelle;
 
-	public function __construct($id, $libelle = null)
+	public function __construct($id, $libelle)
 	{
 		$this->id = $id;
 		$this->libelle = $libelle;

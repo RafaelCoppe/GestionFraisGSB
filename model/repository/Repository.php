@@ -1,4 +1,9 @@
 <?php
+
+namespace App\model\repository;
+
+use PDO, PDOException;
+
 abstract class Repository
 {
 	protected $db;
