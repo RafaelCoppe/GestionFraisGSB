@@ -3,8 +3,8 @@
 namespace App\controller;
 
 use App\controller\controller;
-use App\model\repository\{DemandeRemboursementRepository, TypeFraisRepository, ActionRepository, TableRepository, LogEvenementRepository};
-use App\model\entity\{TypeFrais, Utilisateur, LogEvenement, DemandeRemboursement, Action, Table};
+use App\model\repository\{DemandeRemboursementRepository, TypeFraisRepository};
+use App\model\entity\{TypeFrais, Utilisateur, DemandeRemboursement};
 
 class DemandeRemboursementController extends Controller
 {
@@ -97,24 +97,7 @@ class DemandeRemboursementController extends Controller
             $lesTypesFrais = $typeFraisRepository->getLesTypesFrais();
             $this->render("demandeRemboursement/modifDemande", array("title" => "Modification d'une demande de remboursement", "lesTypesFrais" => $lesTypesFrais,  "laDemande" => $laDemande, "msg" => $msg));
         } else {
-            $unActionRepository = new ActionRepository();
-            $leIdAction = $unActionRepository->getIdByLibelle(new Action(null, "modification"));
-
-            $unTableRepository = new TableRepository();
-            $leIdTable = $unTableRepository->getIdByNom(new Table(null, "demande_remboursement"));
-
-            $leLogEvenement = new LogEvenement(
-                null,
-                $_SERVER['REMOTE_ADDR'],
-                date('Y-m-d H:i:s'),
-                $_POST['idDemande'],
-                new Utilisateur($idUtilConnecte),
-                new Action($leIdAction, "modification"),
-                new Table($leIdTable, "demande_rembousement")
-            );
-
-            $unLogEvenementRepository = new logEvenementRepository();
-            $leResult = $unLogEvenementRepository->insertLog($leLogEvenement);
+            $this->insertInLogs(["modification", "demande_remboursement", $_POST['idDemande'], $idUtilConnecte]);
 
             $msg = "modification effectuée";
             $unDemRemboursRepository = new DemandeRemboursementRepository();

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php 
 
 namespace App\model\entity;
@@ -6,13 +5,6 @@ namespace App\model\entity;
 class Medecin {
     private ?int $id;
     private ?string $nom;
-=======
-<?php
-class Medecin
-{
-	private ?int $id;
-	private ?string $nom;
->>>>>>> 6f7b701c891cbf5f0c349f3d2a4554bf324ea47d
     private ?string $prenom;
 
 	public function __construct($id, $nom, $prenom)

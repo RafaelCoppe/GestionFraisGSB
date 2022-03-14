@@ -1,4 +1,8 @@
 <?php
+
+namespace App\model\entity;
+
+use App\model\entity\{Medecin, Utilisateur};
 class Visite
 {
 	private ?int $id;
