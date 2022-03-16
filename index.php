@@ -182,8 +182,6 @@ if (isset($_GET['action'])) {
 
         case "consultVisiteListe":
             // affichage des visites pour le délegué choisis
-            require(ROOT . "/controller/Controller.php");
-            require(ROOT . "/controller/UtilisateurController.php");
             $leControleur = new UtilisateurController();
             $leControleur->consultLesDeleguesListe();
             break;
