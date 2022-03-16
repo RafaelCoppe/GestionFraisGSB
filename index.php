@@ -185,8 +185,8 @@ if (isset($_GET['action'])) {
             $leControleur->consultDelegueList();
             break;
         case "consultVisiteMedecin":
-            $leControleur = new VisiteMedecinController();
-            $leControleur->consultVisiteMedecin();
+            $leControleur = new VisiteController();
+            $leControleur->consultLesVisites();
 
             break;
         case "connexionTrait":
