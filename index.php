@@ -180,15 +180,14 @@ if (isset($_GET['action'])) {
             $leControleur = new DeplacementsPharmacieController();
             $leControleur->modifDeplacementsPharmacieTrait();
 
-        case "consultDelegueList":
+        case "consultVisiteListe":
+            // affichage des visites pour le délegué choisis
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/UtilisateurController.php");
             $leControleur = new UtilisateurController();
-            $leControleur->consultDelegueList();
+            $leControleur->consultLesDeleguesListe();
             break;
-        case "consultVisiteMedecin":
-            $leControleur = new VisiteMedecinController();
-            $leControleur->consultVisiteMedecin();
-
-            break;
+            
         case "connexionTrait":
             // le formulaire de connexion a été soumis. 
             // Vérification des informations saisies

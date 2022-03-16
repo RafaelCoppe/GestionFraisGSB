@@ -112,12 +112,12 @@ class UtilisateurController extends Controller
         $this->render("deplacementsPharmacies/consultDelegueList", array("title" => "Liste des deplacements en pharmacie", "lesDeleguesDepPharma" => $lesDeleguesDepPharma));
     }
 
-    public function consultDelegueList()
+    public function consultLesDeleguesListe()
     {
-        $utilisateurRepository = new UtilisateurRepository();
-        $lesDelegues = $utilisateurRepository->getDelegueList();
+        //
+        $UtilisateurRepository = new UtilisateurRepository();
+        $lesDelegues = $UtilisateurRepository->getLesDelegues();
 
-        $this->render("visite/consultDelegueListe", array("title" => "Liste des demandes de remboursement", "lesDelegues" => $lesDelegues));
-
+        $this->render("visite/consultDelegueListe", array("title" => "Liste des visites", "lesDelegues" => $lesDelegues));
     }
 }
