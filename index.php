@@ -36,30 +36,48 @@ if (isset($_GET['action'])) {
             $leControleur = new DemandeRemboursementController();
             $leControleur->ajoutDemandeRemboursementForm();
             break;
-            case "ajoutDemRembTrait":
-                // le formulaire d'ajout d'une demande de remboursement a été soumis.
-                // Vérification et enregistrement des informations saisies
-                $leControleur = new DemandeRemboursementController();
-                $leControleur->ajoutDemandeRemboursementTrait();
+        case "ajoutDemRembTrait":
+            // le formulaire d'ajout d'une demande de remboursement a été soumis.
+            // Vérification et enregistrement des informations saisies
+            $leControleur = new DemandeRemboursementController();
+            $leControleur->ajoutDemandeRemboursementTrait();
+            break;
+        case "ajoutVisiteTrait":
+            // le formulaire d'ajout d'une visite a été soumis.
+            // Vérification et enregistrement des informations saisies
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/VisiteController.php");
+            $leControleur = new VisiteController();
+            $leControleur->ajoutVisiteTrait();
+            break;
+            
+        case "ajoutVisiteForm":
+            session_start();
+            //if (session_status() == 3) {
+            $idDelegue = $_SESSION['id'];
+            //}
+            if (isset($idDelegue) == false || $idDelegue == 0) {
+                require(ROOT . "/controller/Controller.php");
+                require(ROOT . "/controller/UtilisateurController.php");
+                $leControleur = new UtilisateurController();
+                $leControleur->connexionForm();
                 break;
-            case "ajoutVisiteMedecinTrait":
-                $leControleur = new VisiteMedecinController();
-                $leControleur->ajoutVisiteMedecinTrait();
-                break;
-            case "ajoutVisiteMedecinForm":
-                
-                $leControleur = new VisiteMedecinController();
-                $leControleur->ajoutVisiteMedecinForm();
-                break;
+            }
+            // demande du formulaire d'ajout d'une visite
+            require(ROOT . "/controller/Controller.php");
+            require(ROOT . "/controller/VisiteController.php");
+            $leControleur = new VisiteController();
+            $leControleur->ajoutVisiteForm();
+            break;
 
-            case "ajoutMedecinTrait":
-                $leControleur = new MedecinController();
-                $leControleur->ajoutMedecinTrait();
-                break;
-            case "ajoutMedecinForm":
-                $leControleur = new MedecinController();
-                $leControleur->ajoutMedecinForm();
-                break;
+        case "ajoutMedecinTrait":
+            $leControleur = new MedecinController();
+            $leControleur->ajoutMedecinTrait();
+            break;
+        case "ajoutMedecinForm":
+            $leControleur = new MedecinController();
+            $leControleur->ajoutMedecinForm();
+            break;
 
         case "modifDemRembListeForm":
             // demande du formulaire permettant d'obtenir la liste des
