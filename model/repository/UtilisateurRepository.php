@@ -113,21 +113,18 @@ class UtilisateurRepository extends Repository
         JOIN deplacement_pharmacie ON deplacement_pharmacie.id_delegue = utilisateur.id");
     }
 
-    public function getDelegueList()
+    public function getLesDelegues()
     {
+        
         $lesDelegues = array();
         $db = $this->dbConnect();
-        $req = $db->prepare("select id, nom, prenom
-                    from utilisateur 
-                    where id_profil = 1");
-
+        $req = $db->prepare("select id, utilisateur.nom, utilisateur.prenom 
+                        from utilisateur
+                        where id_profil = 1");
         // on demande l'exécution de la requête 
         $req->execute();
         $lesEnregs = $req->fetchAll();
         foreach ($lesEnregs  as $enreg) {
-
-            $unDelegue = new Utilisateur($enreg->id, $enreg->nom, $enreg->prenom);
-
             $unDelegue = new Utilisateur(
                 $enreg->id,
                 $enreg->nom,
