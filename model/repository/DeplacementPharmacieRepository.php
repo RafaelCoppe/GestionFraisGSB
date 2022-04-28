@@ -91,7 +91,7 @@ class DeplacementPharmacieRepository extends Repository
         JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
         JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
         JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue
-        WHERE deplacement_pharmacie.id = $idDeplacement");
+        WHERE deplacement_pharmacie.id = " + $idDeplacement);
         // on demande l'exécution de la requête 
         $req->execute();
         $leEnreg = $req->fetch();
