@@ -180,6 +180,18 @@ if (isset($_GET['action'])) {
             $leControleur = new DeplacementsPharmacieController();
             $leControleur->modifDeplacementsPharmacieTrait();
 
+        case "supprDepPharmaListeForm":
+            // demande du formulaire permettant d'obtenir la liste des
+            // demande de remboursement en vue d'une modification
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->supprDeplacementsPharmacieListeForm();
+            break;
+        case "supprDepPharmaTrait":
+            // le formulaire de modification d'une demande de remboursement a été soumis.
+            // Vérification et enregistrement des informations saisies
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->supprDeplacementsPharmacieTrait();
+
         case "consultVisiteListe":
             // affichage des visites pour le délegué choisis
             $leControleur = new UtilisateurController();

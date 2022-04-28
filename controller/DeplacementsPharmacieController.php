@@ -125,9 +125,46 @@ class DeplacementsPharmacieController extends Controller
             $msg = "modification effectuée";
             $idUtilConnecte = $_SESSION['id'];
             $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
-            $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacie($idUtilConnecte);
+            $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
 
             $this->render("deplacementsPharmacies/modifDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements, "msg" => $msg));
         }
     }
+
+    public function supprDeplacementsPharmacieListeForm()
+    {
+        session_start();
+        $idUtilConnecte = $_SESSION['id'];
+        $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
+
+        $this->render("deplacementsPharmacies/supprDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
+    }
+
+    public function supprDeplacementsPharmacieTrait()
+    {
+        //
+        session_start();
+        $idUtilConnecte = $_SESSION['id'];
+        $idDeplacement = $_POST['idDepPharma'];
+        $unDeplacementRepository = new DeplacementPharmacieRepository();
+        $ret = $unDeplacementRepository->supprDeplacementPharmacie($idDeplacement);
+
+        if ($ret == false) {
+            $msg = "suppression impossible";
+
+            $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+            $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
+    
+            //
+            $this->render("deplacementsPharmacies/supprDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements, "msg" => $msg));
+        } else {
+            $msg = "suppression effectuée";
+            $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+            $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);
+
+            $this->render("deplacementsPharmacies/supprDeplacementListForm", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements, "msg" => $msg));
+        }
+    }
+
 };

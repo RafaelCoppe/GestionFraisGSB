@@ -127,6 +127,23 @@ class DeplacementPharmacieRepository extends Repository
         } catch (PDOException $e) {
             $ret = false;
         }
+    }
+        public function supprDeplacementPharmacie($idDeplacement)
+    {
+        $db = $this->dbConnect();
+        try {
+            // on prépare la requête select
+            $req = $db->prepare("DELETE FROM deplacement_pharmacie WHERE id = :par_id");
+            // on affecte une valeur au paramètre déclaré dans la requête 
+            // récupération de la date du jour 
+            $req->bindValue(':par_id', $idDeplacement, PDO::PARAM_INT);
+            // on demande l'exécution de la requête 
+            $ret = $req->execute();
+
+            $ret = true;
+        } catch (PDOException $e) {
+            $ret = false;
+        }
 
         return $ret;
     }
