@@ -83,6 +83,7 @@ class DeplacementsPharmacieController extends Controller
 
         //
         $idDeplacement =  $_POST["deplacement"];
+        $_SESSION["idDeplacement"] = $idDeplacement;
         $idDelegue = $_SESSION['id'];
 
         //
@@ -113,7 +114,7 @@ class DeplacementsPharmacieController extends Controller
             $lesPharmacies = $PharmacieRepository->getLesPharmacies();
 
             //
-            $idDeplacement =  $_POST["deplacement"];
+            $idDeplacement =  intval($_SESSION["idDeplacement"]);
             $idDelegue = $_SESSION['id'];
 
             //
@@ -133,7 +134,6 @@ class DeplacementsPharmacieController extends Controller
 
     public function supprDeplacementsPharmacieListeForm()
     {
-        session_start();
         $idUtilConnecte = $_SESSION['id'];
         $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
         $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);

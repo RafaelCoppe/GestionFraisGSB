@@ -91,7 +91,9 @@ class DeplacementPharmacieRepository extends Repository
         JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
         JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
         JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue
-        WHERE deplacement_pharmacie.id = " + $idDeplacement);
+        WHERE deplacement_pharmacie.id = :par_id_deplacement");
+        // On affecte une valeur au paramètre 
+        $req->bindValue(':par_id_deplacement', $idDeplacement, PDO::PARAM_INT);
         // on demande l'exécution de la requête 
         $req->execute();
         $leEnreg = $req->fetch();
@@ -127,6 +129,7 @@ class DeplacementPharmacieRepository extends Repository
         } catch (PDOException $e) {
             $ret = false;
         }
+        return $ret;
     }
         public function supprDeplacementPharmacie($idDeplacement)
     {
