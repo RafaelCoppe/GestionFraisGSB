@@ -3,7 +3,7 @@
 namespace App\model\repository;
 
 use App\model\repository\Repository;
-use App\model\entity\{LogEvenement};
+use App\model\entity\{LogEvenement, Utilisateur, Table};
 use PDO, PDOException;
 
 class LogEvenementRepository extends Repository
@@ -23,6 +23,22 @@ class LogEvenementRepository extends Repository
             $req->bindValue(':par_id_utilisateur', $leLog->getUtilisateur()->getId(), PDO::PARAM_INT);
             $req->bindValue(':par_id_action', $leLog->getAction()->getId(), PDO::PARAM_INT);
             $req->bindValue(':par_id_table', $leLog->getTable()->getId(), PDO::PARAM_INT);
+            // on demande l'exécution de la requête 
+            $ret = $req->execute();
+        } catch (PDOException $e) {
+            $ret = false;
+        }
+        return $ret;
+    }
+
+    public function selectLogUserTable(Utilisateur $leUser, Table $laTable)
+    {
+        $db = $this->dbConnect();
+        try {
+            // on prépare la requête select
+            $req = $db->prepare("SELECT * FROM logEvenement WHERE id_utilisateur = :par_id_utilisateur and id_table = :par_id_table)");
+            $req->bindValue(':par_id_utilisateur', $leUser->getId(), PDO::PARAM_INT);
+            $req->bindValue(':par_id_table', $laTable->getId(), PDO::PARAM_INT);
             // on demande l'exécution de la requête 
             $ret = $req->execute();
         } catch (PDOException $e) {
