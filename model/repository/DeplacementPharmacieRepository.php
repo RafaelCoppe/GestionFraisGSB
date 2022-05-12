@@ -84,6 +84,34 @@ class DeplacementPharmacieRepository extends Repository
         }
         return $lesDeplacements;
     }
+    public function getLesDeplacementsPharmacieTousLesDelegue()
+    {
+        $lesDeplacements = array();
+        $db = $this->dbConnect();
+        $req = $db->prepare("SELECT deplacement_pharmacie.id AS idDepPharma, deplacement_pharmacie.date, deplacement_pharmacie.commentaire, pharmacie.id, pharmacie.nom AS nomPharmacie, pharmacie.adresse, ville_france.ville_nom AS nomVille, ville_france.ville_code_postal AS CPVille, utilisateur.nom, utilisateur.prenom FROM deplacement_pharmacie
+        JOIN pharmacie ON pharmacie.id = deplacement_pharmacie.pharmacie_id
+        JOIN ville_france ON ville_france.ville_id = pharmacie.id_ville
+        JOIN Utilisateur ON utilisateur.id = deplacement_pharmacie.id_delegue
+        ORDER BY id_delegue ASC");
+        // on demande l'exécution de la requête 
+        $req->execute();
+        $lesEnregs = $req->fetchAll();
+        foreach ($lesEnregs  as $enreg) {
+            $unDeplacement = new DeplacementPharmacie(
+                $enreg->idDepPharma,
+                $enreg->date,
+                $unePharmacie = new Pharmacie(
+                    $enreg->id,
+                    $enreg->nomPharmacie,
+                    $enreg->adresse,
+                    new Ville(null, null, $enreg->nomVille, $enreg->CPVille)),
+                $enreg->commentaire,
+                new Utilisateur(null, $enreg->nom, $enreg->prenom),
+                );
+            array_push($lesDeplacements, $unDeplacement);
+        }
+        return $lesDeplacements;
+    }
     public function getUnDeplacementPharmacie($idDeplacement, $idDelegue)
     {
         $db = $this->dbConnect();

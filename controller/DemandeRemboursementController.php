@@ -108,7 +108,7 @@ class DemandeRemboursementController extends Controller
     public function consultMesDemandeRemboursement()
     {
         session_start();
-        $idUtilConnecte = $_SESSION['profil'];
+        $idUtilConnecte = $_SESSION['id'];
         
         $unDemRemboursRepository = new DemandeRemboursementRepository();
         $lesDemandes = $unDemRemboursRepository->getMesDemandesRemboursement($idUtilConnecte);
