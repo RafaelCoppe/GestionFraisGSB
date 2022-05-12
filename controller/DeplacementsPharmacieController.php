@@ -60,9 +60,17 @@ class DeplacementsPharmacieController extends Controller
     public function consultDeplacementsPharmacieDelegue()
     {
         session_start();
-        $idDelegue = $_POST['delegue'];
+        $idDelegue = $_SESSION['id'];
         $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
         $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idDelegue);
+
+        $this->render("deplacementsPharmacies/consultDeplacementsPharmacie", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
+    }
+    public function consultDeplacementsPharmacieTousLesDelegue()
+    {
+        session_start();
+        $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
+        $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieTousLesDelegue();
 
         $this->render("deplacementsPharmacies/consultDeplacementsPharmacie", array("title" => "Liste des deplacements en pharmacie", "lesDeplacements" => $lesDeplacements));
     }
@@ -134,6 +142,7 @@ class DeplacementsPharmacieController extends Controller
 
     public function supprDeplacementsPharmacieListeForm()
     {
+        session_start();
         $idUtilConnecte = $_SESSION['id'];
         $undeplacementPharmacieRepository = new DeplacementPharmacieRepository();
         $lesDeplacements = $undeplacementPharmacieRepository->getLesDeplacementsPharmacieDelegue($idUtilConnecte);

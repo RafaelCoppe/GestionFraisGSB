@@ -159,9 +159,9 @@ if (isset($_GET['action'])) {
             $leControleur->consultDeplacementsPharmacieDelegue();
             break;
         case "ConsultListeDelegueDepPharma":
-            // affichage des déplacements en pharmacie saisies par le délegué
-            $leControleur = new UtilisateurController();
-            $leControleur->selectDelegueDepPharma();
+            // affichage des déplacements en pharmacie saisies par les délegués
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->consultDeplacementsPharmacieTousLesDelegue();
             break;
         case "modifDepPharmaListeForm":
             // demande du formulaire permettant d'obtenir la liste des
@@ -179,6 +179,7 @@ if (isset($_GET['action'])) {
             // Vérification et enregistrement des informations saisies
             $leControleur = new DeplacementsPharmacieController();
             $leControleur->modifDeplacementsPharmacieTrait();
+            break;
 
         case "supprDepPharmaListeForm":
             // demande du formulaire permettant d'obtenir la liste des
@@ -196,6 +197,12 @@ if (isset($_GET['action'])) {
             // affichage des visites pour le délegué choisis
             $leControleur = new UtilisateurController();
             $leControleur->consultLesDeleguesListe();
+            break;
+
+        case "consultSesDepPharma":
+            // affichage des déplacements pour le délégué connecté
+            $leControleur = new DeplacementsPharmacieController();
+            $leControleur->consultDeplacementsPharmacieDelegue();
             break;
             
         case "connexionTrait":
