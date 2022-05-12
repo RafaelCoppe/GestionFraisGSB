@@ -38,15 +38,12 @@ class DemandeRemboursementRepository extends Repository
         $db = $this->dbConnect();
         try {
             // on prépare la requête select
-            $req = $db->prepare("update demande_remboursement 
-            set  montant = :par_montant,
-            id_type_frais=:par_id_type_frais, id_delegue=:par_id_delegue
-            where id = :par_id_demande");
+            $req = $db->prepare("update demande_remboursement set montant = :par_montant, commentaire = :par_commentaire, id_type_frais = :par_id_type_frais where id = :par_id_demande");
             // on affecte une valeur au paramètre déclaré dans la requête 
             // récupération de la date du jour 
             $req->bindValue(':par_montant', $demAModifier->getMontant(), PDO::PARAM_STR);
             $req->bindValue(':par_id_type_frais', $demAModifier->getTypeFrais()->getId(), PDO::PARAM_INT);
-            $req->bindValue(':par_id_delegue', $demAModifier->getDelegue()->getId(), PDO::PARAM_INT);
+            $req->bindValue(':par_commentaire', $demAModifier->getCommentaire(), PDO::PARAM_STR);
             $req->bindValue(':par_id_demande', $demAModifier->getId(), PDO::PARAM_INT);
             // on demande l'exécution de la requête 
             $ret = $req->execute();
